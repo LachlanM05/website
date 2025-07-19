@@ -263,7 +263,7 @@ window.addEventListener("DOMContentLoaded", () => {
 <!-- other scripts -->
 
 <script>
-// dark and light mode toggle + lightmode video transition
+// dark and light mode toggle
 function setCookie(name, value, days) {
   const expires = new Date(Date.now() + days * 864e5).toUTCString();
   document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
@@ -274,29 +274,6 @@ function getCookie(name) {
     const parts = v.split('=');
     return parts[0] === name ? decodeURIComponent(parts[1]) : r;
   }, '');
-}
-
-function playTransitionVideo() {
-  const video = document.getElementById("theme-transition-video");
-  if (!video) return;
-
-  video.style.display = "block";
-  video.currentTime = 0;
-  video.play().catch(() => {
-    // Autoplay might fail silently, fallback to hide
-    setTimeout(() => {
-      video.style.display = "none";
-    }, 3000);
-  });
-
-  video.onended = () => {
-    video.style.display = "none";
-  };
-
-  // fallback in case onended doesn't fire
-  setTimeout(() => {
-    video.style.display = "none";
-  }, 5000); // adjust to match video length
 }
 
 function applyTheme(theme) {
@@ -319,7 +296,6 @@ document.getElementById("theme-toggle").addEventListener("click", () => {
   applyTheme(newTheme);
 
   if (newTheme === "light") {
-    playTransitionVideo();
   }
 });
 </script>

@@ -24,13 +24,13 @@
   <header>
     <h1>heyyyyy :333</h1>
     <p>are you here for my socials? or looking to get to know me?</p>
-	<p>under maintenance</p>
     <div class="buttons">
       <a href="socials" class="btn">socials</a>
       <a href="about" class="btn">about me</a>
+      <a href="button" class="btn">button only</a>
     </div>
 	<div class="clock-container">
-	<div id="aest-time">Loading AEST time...</div>
+	<div id="aest-time">loading my time...</div>
 	<div id="viewer-diff" class="diff-text"></div>
 	</div>
 
@@ -243,7 +243,7 @@
 <!-- other scripts -->
 
 <script>
-// dark and light mode toggle + lightmode video transition
+// dark and light mode toggle
 function setCookie(name, value, days) {
   const expires = new Date(Date.now() + days * 864e5).toUTCString();
   document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
@@ -254,29 +254,6 @@ function getCookie(name) {
     const parts = v.split('=');
     return parts[0] === name ? decodeURIComponent(parts[1]) : r;
   }, '');
-}
-
-function playTransitionVideo() {
-  const video = document.getElementById("theme-transition-video");
-  if (!video) return;
-
-  video.style.display = "block";
-  video.currentTime = 0;
-  video.play().catch(() => {
-    // Autoplay might fail silently, fallback to hide
-    setTimeout(() => {
-      video.style.display = "none";
-    }, 3000);
-  });
-
-  video.onended = () => {
-    video.style.display = "none";
-  };
-
-  // fallback in case onended doesn't fire
-  setTimeout(() => {
-    video.style.display = "none";
-  }, 5000); // adjust to match video length
 }
 
 function applyTheme(theme) {
@@ -299,7 +276,6 @@ document.getElementById("theme-toggle").addEventListener("click", () => {
   applyTheme(newTheme);
 
   if (newTheme === "light") {
-    playTransitionVideo();
   }
 });
 </script>
