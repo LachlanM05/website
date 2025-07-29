@@ -1,104 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Privacy Policy & Terms of Service</title>
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Privacy Policy & Terms of Service</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- dark mode toggle -->
+    <button id="theme-toggle" class="btn theme-button">🌓</button>
 
-  <!-- dark mode toggle -->
-  <button id="theme-toggle" class="btn theme-button">🌓</button>
-
-  <!-- nav bar -->
-  <nav>
-    <ul>
-      <a href="https://lachlanm05.com">
-        <img src="website.png" alt="website logo" id="site-logo">
-      </a>
-      <li><a href="https://lachlanm05.com">home</a></li>
-      <li><a href="socials">socials</a></li>
-      <li><a href="about">about</a></li>
-    </ul>
-  </nav>
-
-  <!-- content -->
-  <main class="about-container">
-    <h1>Privacy Policy & Terms of Service</h1>
-    <p><strong>Effective Date:</strong> July 29, 2025</p>
-    <p>By creating an account on this website, you agree to the following terms:</p>
-
-    <h2>1. Account Information</h2>
-    <ul>
-      <li>You must provide a valid email address to register.</li>
-      <li>Your email is used <strong>only</strong> for account-related functionality (such as login and password resets).</li>
-      <li>Your email is <strong>not</strong> shared, sold, or used for any promotional or third-party purposes.</li>
-    </ul>
-
-    <h2>2. Cookies</h2>
-    <ul>
-      <li>This site uses cookies to store data relevant to your experience, including:</li>
+    <!-- nav bar -->
+    <nav>
       <ul>
-        <li>Your settings and preferences (e.g. dark mode).</li>
-        <li>Button click counter and statistics.</li>
-        <li>Cosmetic items or unlocks in the button game.</li>
-        <li>Any other gameplay-related or functional data tied to your experience.</li>
+        <a href="https://lachlanm05.com">
+          <img src="website.png" alt="website logo" id="site-logo" />
+        </a>
+        <li><a href="https://lachlanm05.com">home</a></li>
+        <li><a href="socials">socials</a></li>
+        <li><a href="about">about</a></li>
       </ul>
-      <li>Cookies are <strong>only</strong> used to enhance your experience and are <strong>never shared</strong> with third parties.</li>
-    </ul>
+    </nav>
 
-    <h2>3. User Conduct</h2>
-    <ul>
-      <li>Choose appropriate usernames and email addresses.</li>
-      <li>Inappropriate or offensive account details may result in removal without notice.</li>
-    </ul>
+    <!-- content -->
+    <main class="about-container">
+      <h1>Privacy Policy & Terms of Service</h1>
+      <p><strong>Effective Date:</strong> July 29, 2025</p>
+      <p>
+        By creating an account on this website, you agree to the following
+        terms:
+      </p>
 
-    <h2>4. Account Termination</h2>
-    <ul>
-      <li>We reserve the right to suspend or delete any account at any time, for any reason, without prior notice or explanation.</li>
-    </ul>
+      <h2>1. Account Information</h2>
+      <ul>
+        <li>You must provide a valid email address to register.</li>
+        <li>
+          Your email is used <strong>only</strong> for account-related
+          functionality (such as login and password resets).
+        </li>
+        <li>
+          Your email is <strong>not</strong> shared, sold, or used for any
+          promotional or third-party purposes.
+        </li>
+      </ul>
 
-    <h2>5. Account Deletion</h2>
-    <p>If you wish to delete your account and all associated data, email your request to:</p>
-    <p><strong>Email:</strong> <a href="mailto:lachlanm05@gmail.com">lachlanm05@gmail.com</a></p>
-	<p>Please include "ACCOUNT" in your email title, so we can respond promptly.</p>
-  </main>
+      <h2>2. Cookies</h2>
+      <ul>
+        <li>
+          This site uses cookies to store data relevant to your experience,
+          including:
+        </li>
+        <ul>
+          <li>Your settings and preferences (e.g. dark mode).</li>
+          <li>Button click counter and statistics.</li>
+          <li>Cosmetic items or unlocks in the button game.</li>
+          <li>
+            Any other gameplay-related or functional data tied to your
+            experience.
+          </li>
+        </ul>
+        <li>
+          Cookies are <strong>only</strong> used to enhance your experience and
+          are <strong>never shared</strong> with third parties.
+        </li>
+      </ul>
 
-  <!-- dark mode script -->
-  <script>
-    window.addEventListener("DOMContentLoaded", () => {
-      function setCookie(name, value, days) {
-        const expires = new Date(Date.now() + days * 864e5).toUTCString();
-        document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
-      }
+      <h2>3. User Conduct</h2>
+      <ul>
+        <li>Choose appropriate usernames and email addresses.</li>
+        <li>
+          Inappropriate or offensive account details may result in removal
+          without notice.
+        </li>
+      </ul>
 
-      function getCookie(name) {
-        return document.cookie.split('; ').reduce((r, v) => {
-          const parts = v.split('=');
-          return parts[0] === name ? decodeURIComponent(parts[1]) : r;
-        }, '');
-      }
+      <h2>4. Account Termination</h2>
+      <ul>
+        <li>
+          We reserve the right to suspend or delete any account at any time, for
+          any reason, without prior notice or explanation.
+        </li>
+      </ul>
 
-      function applyTheme(theme) {
-        if (theme === "dark") {
-          document.body.classList.add("dark-mode");
-        } else {
-          document.body.classList.remove("dark-mode");
+      <h2>5. Account Deletion</h2>
+      <p>
+        If you wish to delete your account and all associated data, email your
+        request to:
+      </p>
+      <p>
+        <strong>Email:</strong>
+        <a href="mailto:lachlanm05@gmail.com">lachlanm05@gmail.com</a>
+      </p>
+      <p>
+        Please include "ACCOUNT" in your email title, so we can respond
+        promptly.
+      </p>
+    </main>
+
+    <!-- dark mode script -->
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        function setCookie(name, value, days) {
+          const expires = new Date(Date.now() + days * 864e5).toUTCString();
+          document.cookie = `${name}=${encodeURIComponent(
+            value
+          )}; expires=${expires}; path=/`;
         }
-        setCookie("theme", theme, 365);
-      }
 
-      const savedTheme = getCookie("theme") || "dark";
-      applyTheme(savedTheme);
+        function getCookie(name) {
+          return document.cookie.split("; ").reduce((r, v) => {
+            const parts = v.split("=");
+            return parts[0] === name ? decodeURIComponent(parts[1]) : r;
+          }, "");
+        }
 
-      document.getElementById("theme-toggle").addEventListener("click", () => {
-        const currentTheme = document.body.classList.contains("dark-mode") ? "dark" : "light";
-        const newTheme = currentTheme === "dark" ? "light" : "dark";
-        applyTheme(newTheme);
+        function applyTheme(theme) {
+          if (theme === "dark") {
+            document.body.classList.add("dark-mode");
+          } else {
+            document.body.classList.remove("dark-mode");
+          }
+          setCookie("theme", theme, 365);
+        }
+
+        const savedTheme = getCookie("theme") || "dark";
+        applyTheme(savedTheme);
+
+        document
+          .getElementById("theme-toggle")
+          .addEventListener("click", () => {
+            const currentTheme = document.body.classList.contains("dark-mode")
+              ? "dark"
+              : "light";
+            const newTheme = currentTheme === "dark" ? "light" : "dark";
+            applyTheme(newTheme);
+          });
       });
-    });
-  </script>
-
-</body>
+    </script>
+  </body>
 </html>

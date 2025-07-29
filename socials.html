@@ -1,213 +1,276 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>socials</title>
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>socials</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  </head>
+  <body>
+    <!-- dark mode button toggle -->
+    <button id="theme-toggle" class="btn theme-button">🌓 Toggle Theme</button>
 
-  <!-- dark mode button toggle -->
-  <button id="theme-toggle" class="btn theme-button">🌓 Toggle Theme</button>
+    <!-- nav bar -->
+    <nav>
+      <ul>
+        <a href="https://lachlanm05.com">
+          <img src="website.png" alt="the logo" id="site-logo" />
+        </a>
+        <li><a href="https://lachlanm05.com">home</a></li>
+        <li><a href="socials">socials</a></li>
+        <li><a href="about">about</a></li>
+      </ul>
+    </nav>
 
-  <!-- nav bar -->
-  <nav>
-    <ul>
-      <a href="https://lachlanm05.com">
-        <img src="website.png" alt="the logo" id="site-logo">
-      </a>
-      <li><a href="https://lachlanm05.com">home</a></li>
-      <li><a href="socials">socials</a></li>
-      <li><a href="about">about</a></li>
-    </ul>
-  </nav>
+    <!-- links grid -->
+    <main class="socials-grid">
+      <div class="social-box">
+        <a href="https://twitch.tv/lachlanm05" target="_blank"
+          ><img
+            src="https://filehost.lachlanm05.com/me/icons/twitch.png"
+            alt="Twitch"
+        /></a>
+        <h2>twitch</h2>
+        <p>
+          click the twitch icon to go to my twitch channel! i don't really
+          stream anymore, though.
+        </p>
+      </div>
+      <div class="social-box">
+        <a href="https://discord.gg/QWfq3feYnn" target="_blank"
+          ><img
+            src="https://filehost.lachlanm05.com/me/icons/discord.png"
+            alt="Discord"
+        /></a>
+        <h2>discord server</h2>
+        <p>come chat to me, other people like yourself, and my friends.</p>
+      </div>
+      <div class="social-box">
+        <a href="https://www.youtube.com/@LachlanHere" target="_blank"
+          ><img
+            src="https://filehost.lachlanm05.com/me/icons/youtube.png"
+            alt="YouTube"
+        /></a>
+        <h2>youtube channel</h2>
+        <p>
+          go watch the stuff i work hard on! or you could go watch epic
+          compilation 2019.....
+        </p>
+      </div>
+      <div class="social-box">
+        <a href="https://steamcommunity.com/id/LachlanM05/" target="_blank"
+          ><img
+            src="https://filehost.lachlanm05.com/me/icons/steam.png"
+            alt="Steam"
+        /></a>
+        <h2>steam</h2>
+        <p>
+          give me steam points? or stalk me when i’m playing Mycopunk or
+          something….
+        </p>
+      </div>
+      <div class="social-box">
+        <a href="https://x.com/LachlanHere" target="_blank"
+          ><img
+            src="https://filehost.lachlanm05.com/me/icons/twitter.png"
+            alt="twitter"
+        /></a>
+        <h2>twitter</h2>
+        <p>
+          come see what's on my mind. or look at me replying to calico for the
+          1000th time of the day.
+        </p>
+      </div>
+      <div class="social-box">
+        <a href="https://paypal.me/lachlanlive" target="_blank"
+          ><img
+            src="https://filehost.lachlanm05.com/me/icons/paypal.png"
+            alt="PayPal"
+        /></a>
+        <h2>omg a paypal…</h2>
+        <p>no, i'm not offering anything in return. self promo go crazyyyy</p>
+      </div>
+    </main>
 
-  <!-- links grid -->
-  <main class="socials-grid">
-    <div class="social-box">
-      <a href="https://twitch.tv/lachlanm05" target="_blank"><img src="https://filehost.lachlanm05.com/me/icons/twitch.png" alt="Twitch"></a>
-      <h2>twitch</h2>
-      <p>click the twitch icon to go to my twitch channel! i don't really stream anymore, though.</p>
-    </div>
-    <div class="social-box">
-      <a href="https://discord.gg/QWfq3feYnn" target="_blank"><img src="https://filehost.lachlanm05.com/me/icons/discord.png" alt="Discord"></a>
-      <h2>discord server</h2>
-      <p>come chat to me, other people like yourself, and my friends.</p>
-    </div>
-    <div class="social-box">
-      <a href="https://www.youtube.com/@LachlanHere" target="_blank"><img src="https://filehost.lachlanm05.com/me/icons/youtube.png" alt="YouTube"></a>
-      <h2>youtube channel</h2>
-      <p>go watch the stuff i work hard on! or you could go watch epic compilation 2019.....</p>
-    </div>
-    <div class="social-box">
-      <a href="https://steamcommunity.com/id/LachlanM05/" target="_blank"><img src="https://filehost.lachlanm05.com/me/icons/steam.png" alt="Steam"></a>
-      <h2>steam</h2>
-      <p>give me steam points? or stalk me when i’m playing Mycopunk or something….</p>
-    </div>
-    <div class="social-box">
-      <a href="https://x.com/LachlanHere" target="_blank"><img src="https://filehost.lachlanm05.com/me/icons/twitter.png" alt="twitter"></a>
-      <h2>twitter</h2>
-      <p>come see what's on my mind. or look at me replying to calico for the 1000th time of the day.</p>
-    </div>
-    <div class="social-box">
-      <a href="https://paypal.me/lachlanlive" target="_blank"><img src="https://filehost.lachlanm05.com/me/icons/paypal.png" alt="PayPal"></a>
-      <h2>omg a paypal…</h2>
-      <p>no, i'm not offering anything in return. self promo go crazyyyy</p>
-    </div>
-  </main>
+    <!-- event info -->
+    <div
+      id="day-info"
+      style="
+        display: none;
+        font-size: 1.1em;
+        margin-top: 1em;
+        color: #cc0000;
+        text-align: center;
+      "
+    ></div>
 
-  <!-- event info -->
-  <div id="day-info" style="display:none; font-size: 1.1em; margin-top: 1em; color: #cc0000; text-align: center;"></div>
+    <!-- footer -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p id="footer-credits">
+          © 2025 LachlanM05 — <span id="footer-random">loading…</span>
+        </p>
+        <p>
+          <a href="https://lachlanm05.com/privacy_tos">Privacy &amp; Terms</a> ·
+          <a href="mailto:lachlanm05@gmail.com">Contact</a> ·
+          <a href="https://github.com/lachlanm05">GitHub</a>
+        </p>
+      </div>
+    </footer>
 
-  <!-- footer -->
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <p id="footer-credits">
-        © 2025 LachlanM05 — <span id="footer-random">loading…</span>
-      </p>
-      <p>
-        <a href="https://lachlanm05.com/privacy_tos">Privacy &amp; Terms</a> ·
-        <a href="mailto:lachlanm05@gmail.com">Contact</a> ·
-        <a href="https://github.com/lachlanm05">GitHub</a>
-      </p>
-    </div>
-  </footer>
+    <!-- events and theme -->
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        // --- theme button ---
+        function setCookie(name, value, days) {
+          const expires = new Date(Date.now() + days * 864e5).toUTCString();
+          document.cookie = `${name}=${encodeURIComponent(
+            value
+          )}; expires=${expires}; path=/`;
+        }
 
-  <!-- events and theme -->
-  <script>
-  window.addEventListener("DOMContentLoaded", () => {
-    // --- theme button ---
-    function setCookie(name, value, days) {
-      const expires = new Date(Date.now() + days * 864e5).toUTCString();
-      document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
-    }
+        function getCookie(name) {
+          return document.cookie.split("; ").reduce((r, v) => {
+            const parts = v.split("=");
+            return parts[0] === name ? decodeURIComponent(parts[1]) : r;
+          }, "");
+        }
 
-    function getCookie(name) {
-      return document.cookie.split('; ').reduce((r, v) => {
-        const parts = v.split('=');
-        return parts[0] === name ? decodeURIComponent(parts[1]) : r;
-      }, '');
-    }
+        function applyTheme(theme) {
+          if (theme === "dark") {
+            document.body.classList.add("dark-mode");
+          } else {
+            document.body.classList.remove("dark-mode");
+          }
+          setCookie("theme", theme, 365);
+        }
 
-    function applyTheme(theme) {
-      if (theme === "dark") {
-        document.body.classList.add("dark-mode");
-      } else {
-        document.body.classList.remove("dark-mode");
-      }
-      setCookie("theme", theme, 365);
-    }
+        const savedTheme = getCookie("theme") || "dark";
+        applyTheme(savedTheme);
 
-    const savedTheme = getCookie("theme") || "dark";
-    applyTheme(savedTheme);
+        document
+          .getElementById("theme-toggle")
+          .addEventListener("click", () => {
+            const currentTheme = document.body.classList.contains("dark-mode")
+              ? "dark"
+              : "light";
+            const newTheme = currentTheme === "dark" ? "light" : "dark";
+            applyTheme(newTheme);
+          });
 
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-      const currentTheme = document.body.classList.contains("dark-mode") ? "dark" : "light";
-      const newTheme = currentTheme === "dark" ? "light" : "dark";
-      applyTheme(newTheme);
-    });
+        // --- events ---
+        const specialDays = {
+          "7-22": {
+            name: "my birthday!!!!",
+            celebrate: true,
+            effect: "confetti",
+          },
+          "12-25": {
+            name: "merry christmas!",
+            celebrate: true,
+            effect: "fireworks",
+          },
+          "1-1": {
+            name: "happy new year!!!!",
+            celebrate: true,
+            effect: "confetti",
+          },
+          // new holidays and friends birthdays go here
+        };
 
-    // --- events ---
-    const specialDays = {
-      "7-22": {
-        name: "my birthday!!!!",
-        celebrate: true,
-        effect: "confetti"
-      },
-      "12-25": {
-        name: "merry christmas!",
-        celebrate: true,
-        effect: "fireworks"
-      },
-      "1-1": {
-        name: "happy new year!!!!",
-        celebrate: true,
-        effect: "confetti"
-      }
-      // new holidays and friends birthdays go here
-    };
+        let alreadyCelebrated = false;
 
-    let alreadyCelebrated = false;
-
-    function getOrdinalSuffix(day) {
-      if (day > 3 && day < 21) return day + 'th';
-      switch (day % 10) {
-        case 1: return day + "st";
-        case 2: return day + "nd";
-        case 3: return day + "rd";
-        default: return day + "th";
-      }
-    }
-
-    function checkSpecialDay() {
-      const aestDate = new Date(new Date().toLocaleString("en-US", { timeZone: "Australia/Sydney" }));
-      const day = aestDate.getDate();
-      const month = aestDate.getMonth() + 1;
-      const key = `${month}-${day}`;
-
-      const special = specialDays[key];
-      const dayInfo = document.getElementById("day-info");
-
-      if (special) {
-        const monthName = aestDate.toLocaleString("en-AU", { month: "long" });
-        const formattedDate = `${getOrdinalSuffix(day)} of ${monthName}`;
-        dayInfo.textContent = `${special.name} (${formattedDate})`;
-        dayInfo.style.display = "block";
-
-        if (special.celebrate && !alreadyCelebrated) {
-          alreadyCelebrated = true;
-
-          if (special.effect === "confetti") {
-            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
-          } else if (special.effect === "fireworks") {
-            const interval = setInterval(() => {
-              confetti({
-                particleCount: 100,
-                angle: 60 + Math.random() * 60,
-                spread: 100,
-                origin: { x: Math.random(), y: Math.random() / 2 }
-              });
-            }, 500);
-            setTimeout(() => clearInterval(interval), 5000);
+        function getOrdinalSuffix(day) {
+          if (day > 3 && day < 21) return day + "th";
+          switch (day % 10) {
+            case 1:
+              return day + "st";
+            case 2:
+              return day + "nd";
+            case 3:
+              return day + "rd";
+            default:
+              return day + "th";
           }
         }
-      } else {
-        dayInfo.style.display = "none";
-      }
-    }
 
-    checkSpecialDay();
-  });
-  </script>
+        function checkSpecialDay() {
+          const aestDate = new Date(
+            new Date().toLocaleString("en-US", { timeZone: "Australia/Sydney" })
+          );
+          const day = aestDate.getDate();
+          const month = aestDate.getMonth() + 1;
+          const key = `${month}-${day}`;
 
-  <!-- footer script -->
-  <script>
-  (async function () {
-    const target = document.getElementById("footer-random");
-    const fallback = "built with HTML, CSS, and coffee.";
+          const special = specialDays[key];
+          const dayInfo = document.getElementById("day-info");
 
-    try {
-      const res = await fetch("/credits.txt", { cache: "no-cache" });
-      if (!res.ok) throw new Error("Failed to load credits.txt");
-      const text = await res.text();
+          if (special) {
+            const monthName = aestDate.toLocaleString("en-AU", {
+              month: "long",
+            });
+            const formattedDate = `${getOrdinalSuffix(day)} of ${monthName}`;
+            dayInfo.textContent = `${special.name} (${formattedDate})`;
+            dayInfo.style.display = "block";
 
-      const lines = text
-        .split(/\r?\n/)
-        .map(l => l.trim())
-        .filter(l => l && !l.startsWith("#"));
+            if (special.celebrate && !alreadyCelebrated) {
+              alreadyCelebrated = true;
 
-      const pick = lines.length > 0
-        ? lines[Math.floor(Math.random() * lines.length)]
-        : fallback;
+              if (special.effect === "confetti") {
+                confetti({
+                  particleCount: 150,
+                  spread: 70,
+                  origin: { y: 0.6 },
+                });
+              } else if (special.effect === "fireworks") {
+                const interval = setInterval(() => {
+                  confetti({
+                    particleCount: 100,
+                    angle: 60 + Math.random() * 60,
+                    spread: 100,
+                    origin: { x: Math.random(), y: Math.random() / 2 },
+                  });
+                }, 500);
+                setTimeout(() => clearInterval(interval), 5000);
+              }
+            }
+          } else {
+            dayInfo.style.display = "none";
+          }
+        }
 
-      target.textContent = pick;
-    } catch (e) {
-      console.error(e);
-      target.textContent = fallback;
-    }
-  })();
-  </script>
-</body>
+        checkSpecialDay();
+      });
+    </script>
+
+    <!-- footer script -->
+    <script>
+      (async function () {
+        const target = document.getElementById("footer-random");
+        const fallback = "built with HTML, CSS, and coffee.";
+
+        try {
+          const res = await fetch("/credits.txt", { cache: "no-cache" });
+          if (!res.ok) throw new Error("Failed to load credits.txt");
+          const text = await res.text();
+
+          const lines = text
+            .split(/\r?\n/)
+            .map((l) => l.trim())
+            .filter((l) => l && !l.startsWith("#"));
+
+          const pick =
+            lines.length > 0
+              ? lines[Math.floor(Math.random() * lines.length)]
+              : fallback;
+
+          target.textContent = pick;
+        } catch (e) {
+          console.error(e);
+          target.textContent = fallback;
+        }
+      })();
+    </script>
+  </body>
 </html>
