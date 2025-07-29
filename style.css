@@ -307,3 +307,14 @@ a:hover {
   font-size: 14px;
   z-index: 999;
 }
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+main, header {
+  flex: 1;
+}
+

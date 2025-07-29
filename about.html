@@ -1,62 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>about me</title>
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-</head>
-<body>
-
-  <!-- dark mode button toggle -->
-  <button id="theme-toggle" class="btn theme-button">🌓</button>
-
-  <!-- nav bar -->
-  <nav>
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   about me
+  </title>
+  <link href="favicon.ico" rel="icon" type="image/x-icon"/>
+  <link href="style.css" rel="stylesheet"/>
+ </head>
+ <body style="display: flex; flex-direction: column; min-height: 100vh;">
+  <button class="btn theme-button" id="theme-toggle">
+   🌓
+  </button>
+  <main style="flex: 1;">
+   <!-- dark mode button toggle -->
+   <!-- nav bar -->
+   <nav>
     <ul>
-       <a href="https://lachlanm05.com">
-         <img src="website.png" alt="website logo" id="site-logo">
-       </a>
-      <li><a href="https://lachlanm05.com">home</a></li>
-      <li><a href="socials">socials</a></li>
-      <li><a href="about">about</a></li>
+     <a href="https://lachlanm05.com">
+      <img alt="website logo" id="site-logo" src="website.png"/>
+     </a>
+     <li>
+      <a href="https://lachlanm05.com">
+       home
+      </a>
+     </li>
+     <li>
+      <a href="socials">
+       socials
+      </a>
+     </li>
+     <li>
+      <a href="about">
+       about
+      </a>
+     </li>
     </ul>
-  </nav>
-
-  <!-- about -->
-  <main class="about-container">
-    <h1>About Me</h1>
+   </nav>
+   <!-- about -->
+   <main class="about-container">
+    <h1>
+     About Me
+    </h1>
     <p>
-      hey hey. it's me. LachlanM05.
+     hey hey. it's me. LachlanM05.
     </p>
     <p>
-      i'm 20. born on the 22/07/2005. hence the 05 in my username.
+     i'm 20. born on the 22/07/2005. hence the 05 in my username.
     </p>
     <p>
-      i write code, am undertaking a programming certificate course. i play games.
+     i write code, am undertaking a programming certificate course. i play games.
     </p>
-	<p>
-	  my top ten games of all time are (in no order),
-	  <li><a href="https://store.steampowered.com/app/377160/Fallout_4/">fallout 4</a></li>
-	  <li><a href="https://ddlc.moe/">doki doki literature club</a></li>
-	  <li><a href="https://store.steampowered.com/app/440/Team_Fortress_2/">team fortress 2</a></li>
-	  <li><a href="https://store.steampowered.com/app/365450/Hacknet/">hacknet</a></li>
-	  <li><a href="https://undertale.com/">undertale</a></li>
-	  <li><a href="https://store.steampowered.com/app/4000/Garrys_Mod/">garry's mod</a></li>
-	  <li><a href="https://www.minecraft.net/">minecraft</a></li>
-	  <li><a href="https://store.steampowered.com/app/1086940/Baldurs_Gate_3/">baldur's gate 3</a></li>
-	  <li><a href="https://store.steampowered.com/app/960090/Bloons_TD_6/">bloons td 6</a></li>
-	  <li><a href="https://store.steampowered.com/app/1091500/Cyberpunk_2077/">cyberpunk 2077</a></li>
-	</p>
+    <p>
+     my top ten games of all time are (in no order),
+     <li>
+      <a href="https://store.steampowered.com/app/377160/Fallout_4/">
+       fallout 4
+      </a>
+     </li>
+     <li>
+      <a href="https://ddlc.moe/">
+       doki doki literature club
+      </a>
+     </li>
+     <li>
+      <a href="https://store.steampowered.com/app/440/Team_Fortress_2/">
+       team fortress 2
+      </a>
+     </li>
+     <li>
+      <a href="https://store.steampowered.com/app/365450/Hacknet/">
+       hacknet
+      </a>
+     </li>
+     <li>
+      <a href="https://undertale.com/">
+       undertale
+      </a>
+     </li>
+     <li>
+      <a href="https://store.steampowered.com/app/4000/Garrys_Mod/">
+       garry's mod
+      </a>
+     </li>
+     <li>
+      <a href="https://www.minecraft.net/">
+       minecraft
+      </a>
+     </li>
+     <li>
+      <a href="https://store.steampowered.com/app/1086940/Baldurs_Gate_3/">
+       baldur's gate 3
+      </a>
+     </li>
+     <li>
+      <a href="https://store.steampowered.com/app/960090/Bloons_TD_6/">
+       bloons td 6
+      </a>
+     </li>
+     <li>
+      <a href="https://store.steampowered.com/app/1091500/Cyberpunk_2077/">
+       cyberpunk 2077
+      </a>
+     </li>
+    </p>
+   </main>
+   <!-- event info -->
+   <div id="day-info" style="display:none; font-size: 1.1em; margin-top: 1em; color: #cc0000; text-align: center;">
+   </div>
+   <!-- dark mode plus events) -->
   </main>
+  <footer class="site-footer">
+   <div class="footer-inner">
+    <p id="footer-credits">
+     © 2025 LachlanM05 —
+     <span id="footer-random">
+      loading…
+     </span>
+    </p>
+    <p>
+     <a href="https://lachlanm05.com/privacy_tos">
+      Privacy &amp; Terms
+     </a>
+     ·
+     <a href="mailto:lachlanm05@gmail.com">
+      Contact
+     </a>
+     ·
+     <a href="https://github.com/lachlanm05">
+      GitHub
+     </a>
+    </p>
+   </div>
+  </footer>
+  <script>
+   (async function () {
+  const target = document.getElementById("footer-random");
+  const fallback = "built with HTML, CSS, and coffee.";
 
-  <!-- event info -->
-  <div id="day-info" style="display:none; font-size: 1.1em; margin-top: 1em; color: #cc0000; text-align: center;"></div>
+  try {
+    const res = await fetch("/credits.txt", { cache: "no-cache" });
+    if (!res.ok) throw new Error("Failed to load credits.txt");
+    const text = await res.text();
 
-  <!-- dark mode plus events) -->
-<script>
-window.addEventListener("DOMContentLoaded", () => {
+    const lines = text
+      .split(/\r?\n/)
+      .map(l => l.trim())
+      .filter(l => l && !l.startsWith("#"));
+
+    const pick =
+      lines.length > 0
+        ? lines[Math.floor(Math.random() * lines.length)]
+        : fallback;
+
+    target.textContent = pick;
+  } catch (e) {
+    console.error(e);
+    target.textContent = fallback;
+  }
+})();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js">
+  </script>
+  <script>
+   window.addEventListener("DOMContentLoaded", () => {
   // --- theme button ---
   function setCookie(name, value, days) {
     const expires = new Date(Date.now() + days * 864e5).toUTCString();
@@ -159,7 +266,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
   checkSpecialDay();
 });
-</script>
-
-</body>
+  </script>
+ </body>
 </html>

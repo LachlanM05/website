@@ -1,50 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>just the button.</title>
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-</head>
-<body>
-
-
-  <!-- nav bar -->
-  <nav>
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   just the button.
+  </title>
+  <link href="favicon.ico" rel="icon" type="image/x-icon"/>
+  <link href="style.css" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js">
+  </script>
+ </head>
+ <body style="display: flex; flex-direction: column; min-height: 100vh;">
+  <main style="flex: 1;">
+   <!-- nav bar -->
+   <nav>
     <ul>
-       <a href="https://lachlanm05.com">
-         <img src="website.png" alt="the logo" id="site-logo">
-       </a>
-      <li><a href="https://lachlanm05.com">home</a></li>
-      <li><a href="socials">socials</a></li>
-      <li><a href="about">about</a></li>
+     <a href="https://lachlanm05.com">
+      <img alt="the logo" id="site-logo" src="website.png"/>
+     </a>
+     <li>
+      <a href="https://lachlanm05.com">
+       home
+      </a>
+     </li>
+     <li>
+      <a href="socials">
+       socials
+      </a>
+     </li>
+     <li>
+      <a href="about">
+       about
+      </a>
+     </li>
     </ul>
-  </nav>
-  <button id="account-btn" class="btn account-button">account (wip)</button>
-  <div id="modal-overlay" class="modal-overlay"></div>
-
-
-  <div id="user-display" class="user-display" style="display:none;">Logged in as: <span id="user-name"></span></div>
-    <!-- event info -->
-  <div id="day-info" style="display:none; font-size: 1.1em; margin-top: 1em; color: #cc0000; text-align: center;"></div>
-
-  <!-- dark mode plus events) -->
-<div id="click-section-big">
-  <div>
-    <button id="click-btn" class="btn big-big">CLICK ME!!!!</button>
-    <p id="click-count">Total Clicks: Loading... If it takes too long, tell me on discord ;3</p>
-    <p id="user-click-count">your clicks: 0</p>
-  </div>
-  <div id="leaderboard" style="min-width: 200px; max-height: 300px; overflow-y: auto;">
-    <h3>Top 10</h3>
-    <ul id="leaderboard-list" style="list-style: none; padding: 0;"></ul>
-  </div>
-</div>
-  <audio id="click-sound" src="https://filehost.lachlanm05.com/me/html/clicksoundeffect.mp3" preload="auto"></audio>
-</div>
-<script>
-window.addEventListener("DOMContentLoaded", () => {
+   </nav>
+   <button class="btn account-button" id="account-btn">
+    account (wip)
+   </button>
+   <div class="modal-overlay" id="modal-overlay">
+   </div>
+   <div class="user-display" id="user-display" style="display:none;">
+    Logged in as:
+    <span id="user-name">
+    </span>
+   </div>
+   <!-- event info -->
+   <div id="day-info" style="display:none; font-size: 1.1em; margin-top: 1em; color: #cc0000; text-align: center;">
+   </div>
+   <!-- dark mode plus events) -->
+   <div id="click-section-big">
+    <div>
+     <button class="btn big-big" id="click-btn">
+      CLICK ME!!!!
+     </button>
+     <p id="click-count">
+      Total Clicks: Loading... If it takes too long, tell me on discord ;3
+     </p>
+     <p id="user-click-count">
+      your clicks: 0
+     </p>
+    </div>
+    <div id="leaderboard" style="min-width: 200px; max-height: 300px; overflow-y: auto;">
+     <h3>
+      Top 10
+     </h3>
+     <ul id="leaderboard-list" style="list-style: none; padding: 0;">
+     </ul>
+    </div>
+   </div>
+   <audio id="click-sound" preload="auto" src="https://filehost.lachlanm05.com/me/html/clicksoundeffect.mp3">
+   </audio>
+   <script>
+    window.addEventListener("DOMContentLoaded", () => {
   // --- theme button ---
   function setCookie(name, value, days) {
     const expires = new Date(Date.now() + days * 864e5).toUTCString();
@@ -147,13 +175,13 @@ window.addEventListener("DOMContentLoaded", () => {
 
   checkSpecialDay();
 });
-</script>
-<div id="account-panel" class="account-panel">
-  <div id="account-content"></div>
-</div>
-
-<script>
-  const globalApiURL = "https://lachlanm05.com/clicks";
+   </script>
+   <div class="account-panel" id="account-panel">
+    <div id="account-content">
+    </div>
+   </div>
+   <script>
+    const globalApiURL = "https://lachlanm05.com/clicks";
   const userApiBase = location.origin;
   const clickCountEl = document.getElementById("click-count");
   const userClickCountEl = document.getElementById("user-click-count");
@@ -246,25 +274,70 @@ window.addEventListener("DOMContentLoaded", () => {
 
   loadLeaderboard();
   setInterval(loadLeaderboard, 10000); // refresh every 10 seconds
-
-</script>
-
-
-
-
-
-
-</body>
-<button id="theme-toggle" class="btn theme-button">🌓</button>
-
-
-
-
-
-<!-- other scripts -->
-
+   </script>
+  </main>
+ </body>
 <script>
-// dark and light mode toggle
+document.addEventListener("DOMContentLoaded", async function () {
+  const target = document.getElementById("footer-random");
+  const fallback = "built with HTML, CSS, and coffee.";
+
+  if (!target) {
+    console.warn("Footer target not found!");
+    return;
+  }
+
+  try {
+    const res = await fetch("credits.txt", { cache: "no-cache" });
+    if (!res.ok) throw new Error("Failed to load credits.txt");
+
+    const text = await res.text();
+    const lines = text
+      .split(/\r?\n/)
+      .map(l => l.trim())
+      .filter(l => l && !l.startsWith("#"));
+
+    const pick =
+      lines.length > 0
+        ? lines[Math.floor(Math.random() * lines.length)]
+        : fallback;
+
+    target.textContent = pick;
+  } catch (e) {
+    console.error("Footer load error:", e);
+    target.textContent = fallback;
+  }
+});
+</script>
+ <footer class="site-footer">
+  <div class="footer-inner">
+   <p id="footer-credits">
+    © 2025 LachlanM05 —
+    <span id="footer-random">
+     loading…
+    </span>
+   </p>
+   <p>
+    <a href="https://lachlanm05.com/privacy_tos">
+     Privacy &amp; Terms
+    </a>
+    ·
+    <a href="mailto:lachlanm05@gmail.com">
+     Contact
+    </a>
+    ·
+    <a href="https://github.com/lachlanm05">
+     GitHub
+    </a>
+   </p>
+  </div>
+ </footer>
+ <button class="btn theme-button" id="theme-toggle">
+  🌓
+ </button>
+ <!-- other scripts -->
+ <script>
+  // dark and light mode toggle
 function setCookie(name, value, days) {
   const expires = new Date(Date.now() + days * 864e5).toUTCString();
   document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
@@ -299,12 +372,10 @@ document.getElementById("theme-toggle").addEventListener("click", () => {
   if (newTheme === "light") {
   }
 });
-</script>
-
-
-<!-- ACCOUNT STUFF -->
-<script>
-const btn = document.getElementById("account-btn");
+ </script>
+ <!-- ACCOUNT STUFF -->
+ <script>
+  const btn = document.getElementById("account-btn");
 const panel = document.getElementById("account-panel");
 const overlay = document.getElementById("modal-overlay");
 const userDisplay = document.getElementById("user-display");
@@ -439,7 +510,5 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-</script>
-
-</body>
+ </script>
 </html>

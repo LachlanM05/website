@@ -1,49 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>lachlanm05's site.</title>
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-</head>
-<body>
-
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   lachlanm05's site.
+  </title>
+  <link href="favicon.ico" rel="icon" type="image/x-icon"/>
+  <link href="style.css" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js">
+  </script>
+ </head>
+ <body style="display: flex; flex-direction: column; min-height: 100vh">
   <nav>
-    <ul>
-       <a href="https://lachlanm05.com">
-         <img src="website.png" alt="website logo" id="site-logo">
-       </a>
-      <li><a href="index">home</a></li>
-      <li><a href="socials">socials</a></li>
-      <li><a href="about">about</a></li>
-    </ul>
+   <ul>
+    <a href="https://lachlanm05.com">
+     <img alt="website logo" id="site-logo" src="website.png"/>
+    </a>
+    <li>
+     <a href="index">
+      home
+     </a>
+    </li>
+    <li>
+     <a href="socials">
+      socials
+     </a>
+    </li>
+    <li>
+     <a href="about">
+      about
+     </a>
+    </li>
+   </ul>
   </nav>
-  <button id="account-btn" class="btn account-button">account (wip)</button>
-  <div id="modal-overlay" class="modal-overlay"></div>
-
-
-  <div id="user-display" class="user-display" style="display:none;">Logged in as: <span id="user-name"></span></div>
-  <header>
-    <h1>heyyyyy :333</h1>
-    <p>are you here for my socials? or looking to get to know me?</p>
+  <main style="flex: 1;">
+   <button class="btn account-button" id="account-btn">
+    account (wip)
+   </button>
+   <div class="modal-overlay" id="modal-overlay">
+   </div>
+   <div class="user-display" id="user-display" style="display:none;">
+    Logged in as:
+    <span id="user-name">
+    </span>
+   </div>
+   <header>
+    <h1>
+     heyyyyy :333
+    </h1>
+    <p>
+     are you here for my socials? or looking to get to know me?
+    </p>
     <div class="buttons">
-      <a href="socials" class="btn">socials</a>
-      <a href="about" class="btn">about me</a>
-      <a href="button" class="btn">button only</a>
+     <a class="btn" href="socials">
+      socials
+     </a>
+     <a class="btn" href="about">
+      about me
+     </a>
+     <a class="btn" href="button">
+      button only
+     </a>
     </div>
-	<div class="clock-container">
-	<div id="aest-time">loading my time...</div>
-	<div id="viewer-diff" class="diff-text"></div>
-	</div>
-
-
-  </header>
-
-
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-<script>
-  // events and clock
+    <div class="clock-container">
+     <div id="aest-time">
+      loading my time...
+     </div>
+     <div class="diff-text" id="viewer-diff">
+     </div>
+    </div>
+   </header>
+   <div id="day-info" style="display:none; font-size: 1.1em; margin-top: 0.5em; color: #cc0000;">
+   </div>
+   <div class="account-panel" id="account-panel">
+    <div id="account-content">
+    </div>
+   </div>
+   <!-- footer -->
+   <!-- FOOTER SCRIPT -->
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js">
+  </script>
+  <script>
+   // events and clock
   const specialDays = {
     "7-22": {
       name: "my birthday!!!! (22/07/05)",
@@ -142,111 +181,64 @@
 
   setInterval(updateClock, 1000);
   updateClock();
-</script>
+  </script>
+  <footer class="site-footer">
+   <div class="footer-inner">
+    <p id="footer-credits">
+     © 2025 LachlanM05 —
+     <span id="footer-random">
+      loading…
+     </span>
+    </p>
+    <p>
+     <a href="https://lachlanm05.com/privacy_tos">
+      Privacy &amp; Terms
+     </a>
+     ·
+     <a href="mailto:lachlanm05@gmail.com">
+      Contact
+     </a>
+     ·
+     <a href="https://github.com/lachlanm05">
+      GitHub
+     </a>
+    </p>
+   </div>
+  </footer>
+  <script>
+   (async function () {
+  const target = document.getElementById("footer-random");
+  const fallback = "built with HTML, CSS, and coffee.";
 
+  try {
+    const res = await fetch("/credits.txt", { cache: "no-cache" });
+    if (!res.ok) throw new Error("Failed to load credits.txt");
+    const text = await res.text();
 
-<div id="day-info" style="display:none; font-size: 1.1em; margin-top: 0.5em; color: #cc0000;"></div>
-<div id="click-section">
-  <button id="click-btn" class="btn">CLICK ME!!!!</button>
-  <p id="click-count">Total Clicks: Loading... If it takes too long, tell me on discord ;3</p>
-  <p id="user-click-count">your clicks: 0</p>
-  <audio id="click-sound" src="https://filehost.lachlanm05.com/me/html/clicksoundeffect.mp3" preload="auto"></audio>
-</div>
-<div id="account-panel" class="account-panel">
-  <div id="account-content"></div>
-</div>
+    const lines = text
+      .split(/\r?\n/)
+      .map(l => l.trim())
+      .filter(l => l && !l.startsWith("#"));
 
-<script>
-  const globalApiURL = "https://lachlanm05.com/clicks";
-  const userApiBase = location.origin;
-  const clickCountEl = document.getElementById("click-count");
-  const userClickCountEl = document.getElementById("user-click-count");
-  const clickSound = document.getElementById("click-sound");
+    const pick =
+      lines.length > 0
+        ? lines[Math.floor(Math.random() * lines.length)]
+        : fallback;
 
-  async function loadCount() {
-    try {
-      const res = await fetch(globalApiURL);
-      const data = await res.json();
-      clickCountEl.textContent = `global clicks: ${data.count}`;
-    } catch (err) {
-      clickCountEl.textContent = "error loading count";
-    }
+    target.textContent = pick;
+  } catch (e) {
+    console.error(e);
+    target.textContent = fallback;
   }
-
-  async function loadUserClicks() {
-    try {
-      const res = await fetch(`${userApiBase}/get-clicks`, {
-        credentials: "include"
-      });
-      if (res.status === 401) {
-        userClickCountEl.textContent = "your clicks: (not saved)";
-        return;
-      }
-      const data = await res.json();
-      userClickCountEl.textContent = `your clicks: ${data.clicks}`;
-    } catch (err) {
-      userClickCountEl.textContent = "your clicks: (error)";
-    }
-  }
-
-  async function incrementUserClicks() {
-    try {
-      const res = await fetch(`${userApiBase}/increment-click`, {
-        method: "POST",
-        credentials: "include"
-      });
-      if (res.status === 401) {
-        // fallback to local only
-        const local = parseInt(localStorage.getItem("userClicks") || "0") + 1;
-        localStorage.setItem("userClicks", local);
-        userClickCountEl.textContent = `your clicks: ${local} (not saved)`;
-        return;
-      }
-      loadUserClicks();
-    } catch (err) {
-      userClickCountEl.textContent = "your clicks: (error)";
-    }
-  }
-
-  function playClickSound() {
-    clickSound.currentTime = 0;
-    clickSound.play();
-  }
-
-  async function sendClick() {
-    try {
-      await fetch(globalApiURL, { method: "POST" });
-      playClickSound();
-      await incrementUserClicks();
-      loadCount();
-    } catch (err) {
-      clickCountEl.textContent = "click failed";
-    }
-  }
-
-  document.getElementById("click-btn").addEventListener("click", sendClick);
-
-  loadCount();
-  loadUserClicks();
-  setInterval(loadCount, 5000);
-</script>
-
-
-
-
-
-
-</body>
-<button id="theme-toggle" class="btn theme-button">🌓</button>
-
-
-
-
-
-<!-- other scripts -->
-
-<script>
-// dark and light mode toggle
+})();
+  </script>
+ </body>
+ <button class="btn theme-button" id="theme-toggle">
+  🌓
+ </button>
+ <!-- other scripts -->
+ <script>
+  // dark and light mode toggle
 function setCookie(name, value, days) {
   const expires = new Date(Date.now() + days * 864e5).toUTCString();
   document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
@@ -281,12 +273,10 @@ document.getElementById("theme-toggle").addEventListener("click", () => {
   if (newTheme === "light") {
   }
 });
-</script>
-
-
-<!-- ACCOUNT STUFF -->
-<script>
-const btn = document.getElementById("account-btn");
+ </script>
+ <!-- ACCOUNT STUFF -->
+ <script>
+  const btn = document.getElementById("account-btn");
 const panel = document.getElementById("account-panel");
 const overlay = document.getElementById("modal-overlay");
 const userDisplay = document.getElementById("user-display");
@@ -421,8 +411,5 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-</script>
-
-
-
+ </script>
 </html>
