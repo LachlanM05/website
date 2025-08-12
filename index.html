@@ -203,7 +203,11 @@
           const lines = text
             .split(/\r?\n/)
             .map((l) => l.trim())
-            .filter((l) => l && !l.startsWith("#"));
+            .filter((l, idx) =>
+              l &&
+              !l.startsWith("#") &&
+            idx !== 41 // skip line 42
+          );
 
           const pick =
             lines.length > 0
