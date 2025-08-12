@@ -293,38 +293,37 @@
       </script>
     </main>
   </body>
-  <script>
-    document.addEventListener("DOMContentLoaded", async function () {
-      const target = document.getElementById("footer-random");
-      const fallback = "built with HTML, CSS, and coffee.";
+    <script>
+      (async function () {
+        const target = document.getElementById("footer-random");
+        const fallback = "built with HTML, CSS, and coffee.";
 
-      if (!target) {
-        console.warn("Footer target not found!");
-        return;
-      }
+        try {
+          const res = await fetch("/credits.txt", { cache: "no-cache" });
+          if (!res.ok) throw new Error("Failed to load credits.txt");
+          const text = await res.text();
 
-      try {
-        const res = await fetch("credits.txt", { cache: "no-cache" });
-        if (!res.ok) throw new Error("Failed to load credits.txt");
+          const lines = text
+            .split(/\r?\n/)
+            .map((l) => l.trim())
+            .filter((l, idx) =>
+              l &&
+              !l.startsWith("#") &&
+            idx !== 41 // skip line 42
+          );
 
-        const text = await res.text();
-        const lines = text
-          .split(/\r?\n/)
-          .map((l) => l.trim())
-          .filter((l) => l && !l.startsWith("#"));
+          const pick =
+            lines.length > 0
+              ? lines[Math.floor(Math.random() * lines.length)]
+              : fallback;
 
-        const pick =
-          lines.length > 0
-            ? lines[Math.floor(Math.random() * lines.length)]
-            : fallback;
-
-        target.textContent = pick;
-      } catch (e) {
-        console.error("Footer load error:", e);
-        target.textContent = fallback;
-      }
-    });
-  </script>
+          target.textContent = pick;
+        } catch (e) {
+          console.error(e);
+          target.textContent = fallback;
+        }
+      })();
+    </script>
   <footer class="site-footer">
     <div class="footer-inner">
       <p id="footer-credits">
