@@ -1,0 +1,229 @@
+<!doctype html>
+<!-- all in one type shi -->
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>404 — Not Found</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #0b0b0c;
+      --grid: rgba(255,255,255,0.04);
+      --text: #e8e8ea;
+      --muted: #a5a7ad;
+      --accent: #a7f3d0;
+      --accent-2: #93c5fd;
+      --ring: rgba(167,243,208,.3);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin:0;
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      color: var(--text);
+      background: radial-gradient(1200px 800px at 70% -10%, rgba(147,197,253,.09), transparent 60%),
+                  radial-gradient(900px 600px at 10% 120%, rgba(167,243,208,.08), transparent 60%),
+                  var(--bg);
+      overflow: hidden;
+    }
+
+    /* anim grid */
+    .grid{
+      position: fixed;
+      inset: 0;
+      background:
+        linear-gradient(to right, var(--grid) 1px, transparent 1px) 0 0/48px 48px,
+        linear-gradient(to bottom, var(--grid) 1px, transparent 1px) 0 0/48px 48px;
+      mask-image: radial-gradient(ellipse at 50% 40%, black 60%, transparent 100%);
+      animation: float 18s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes float{
+      from { transform: translateY(0); }
+      to   { transform: translateY(-48px); }
+    }
+
+    main{
+      min-height: 100%;
+      display: grid;
+      place-items: center;
+      padding: clamp(24px, 5vw, 64px);
+    }
+
+    .wrap{
+      width: min(1100px, 92vw);
+      display: grid;
+      gap: 20px;
+      text-align: center;
+    }
+
+    /* 404 */
+    .code{
+      position: relative;
+      font-size: clamp(64px, 16vw, 220px);
+      line-height: .9;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      margin: 0;
+      --grad: conic-gradient(from 220deg, var(--accent), var(--accent-2), var(--accent));
+      color: transparent;
+      -webkit-text-stroke: 2px #d1d5db10; /* faint outline */
+      background: var(--grad);
+      background-clip: text;
+      -webkit-background-clip: text;
+      filter: drop-shadow(0 12px 40px rgba(0,0,0,.45));
+    }
+    .code::before,
+    .code::after{
+      content: attr(data-text);
+      position: absolute; inset: 0;
+      background: var(--grad);
+      background-clip: text; -webkit-background-clip: text;
+      color: transparent;
+      mix-blend-mode: screen;
+      clip-path: polygon(0 0,100% 0,100% 36%,0 46%);
+      opacity: .18;
+      animation: glitch1 3.6s infinite ease-in-out;
+    }
+    .code::after{
+      clip-path: polygon(0 60%,100% 50%,100% 100%,0 100%);
+      animation: glitch2 3.6s infinite ease-in-out;
+    }
+    @keyframes glitch1{
+      0%,100% { transform: translate(0,0); }
+      10%     { transform: translate(2px,-1px); }
+      20%     { transform: translate(-1px,1px); }
+      30%     { transform: translate(1px,0); }
+      40%     { transform: translate(-1px,1px); }
+      50%     { transform: translate(0,0); }
+    }
+    @keyframes glitch2{
+      0%,100% { transform: translate(0,0); }
+      12%     { transform: translate(-2px,1px); }
+      22%     { transform: translate(1px,-1px); }
+      35%     { transform: translate(-1px,0); }
+      48%     { transform: translate(0,1px); }
+      60%     { transform: translate(0,0); }
+    }
+
+    .headline{
+      margin: 0 auto;
+      max-width: 52ch;
+      font-size: clamp(16px, 2.2vw, 20px);
+      color: var(--muted);
+    }
+
+    .actions{
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+
+    .btn{
+      --bg-btn: rgba(255,255,255,.06);
+      --bd: 1px solid rgba(255,255,255,.12);
+      display: inline-flex;
+      align-items: center;
+      gap: .6ch;
+      padding: 12px 16px;
+      border-radius: 10px;
+      border: var(--bd);
+      background: var(--bg-btn);
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+      box-shadow: 0 0 0 0 var(--ring);
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 0 0 6px var(--ring);
+      background: rgba(255,255,255,.08);
+    }
+    .btn .arrow{ transition: transform .12s ease; }
+    .btn:hover .arrow{ transform: translateX(3px); }
+
+    .minor{
+      opacity: .7;
+      font-size: 12px;
+      letter-spacing: .02em;
+      margin-top: 8px;
+    }
+
+    /* Optional “system” bar */
+    .sys{
+      position: fixed;
+      inset: auto 12px 12px 12px;
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 12px;
+      user-select: none;
+      opacity: .8;
+    }
+    .sys span{ white-space: nowrap; }
+    .kbd{
+      display: inline-grid; place-items:center;
+      font-weight: 700; font-size: 11px;
+      border: 1px solid rgba(255,255,255,.18);
+      padding: 2px 6px; border-radius: 6px;
+      background: rgba(255,255,255,.06);
+      margin: 0 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .grid, .code::before, .code::after { animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="grid" aria-hidden="true"></div>
+
+  <main>
+    <div class="wrap" role="main">
+      <h1 class="code" data-text="404">404</h1>
+      <p class="headline">This page isn't here anymore, or never existed.</p>
+
+      <div class="actions" role="navigation">
+        <a class="btn" href="/" aria-label="Go to homepage">
+          <span>Go home</span>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+
+      <div class="minor">Tip: press <span class="kbd">H</span> to go home.</div>
+    </div>
+  </main>
+
+  <div class="sys">
+    <span>Status: <strong style="color:var(--text)">404</strong></span>
+    <span>Referrer: <span id="ref">direct</span></span>
+    <span>Client: <span id="ua">unknown</span></span>
+  </div>
+
+  <script>
+    document.addEventListener('keydown', (e) => {
+      if (e.key.toLowerCase() === 'h') window.location.href = '/';
+    });
+    (function initMeta(){
+      const r = document.getElementById('ref');
+      const u = document.getElementById('ua');
+      try {
+        r.textContent = document.referrer ? new URL(document.referrer).host : 'direct';
+      } catch { r.textContent = 'direct'; }
+      u.textContent = navigator.userAgentData?.brands?.map(b=>b.brand).join(', ')
+                      || navigator.userAgent || 'unknown';
+    })();
+  </script>
+</body>
+</html>

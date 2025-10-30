@@ -1,414 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" >
-    <title>lachlanm05's site.</title>
-    <link href="favicon.ico" rel="icon" type="image/x-icon" >
-    <link href="style.css" rel="stylesheet" >
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LachlanM05's Website</title>
+    <meta
+      name="description"
+      content="LachlanM05, wishes to be just a little guy. if you read this you're cute."
+    />
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+    <link rel="manifest" href="/assets/site.manifest" />
+    <meta name="colour-scheme" content="dark light" />
+    <link rel="stylesheet" href="/assets/style.css" />
   </head>
-  <body style="display: flex; flex-direction: column; min-height: 100vh">
-    <nav>
-      <ul>
-        <a href="https://lachlanm05.com">
-          <img alt="website logo" id="site-logo" src="website.png" >
-        </a>
-        <li>
-          <a href="index"> home </a>
-        </li>
-        <li>
-          <a href="socials"> socials </a>
-        </li>
-        <li>
-          <a href="about"> about </a>
-        </li>
-      </ul>
-    </nav>
-    <main style="flex: 1">
-      <button class="btn account-button" id="account-btn">account (wip)</button>
-      <div class="modal-overlay" id="modal-overlay"></div>
-      <div class="user-display" id="user-display" style="display: none">
-        Logged in as:
-        <span id="user-name"> </span>
-      </div>
+
+  <body>
+    <div class="wrap">
       <header>
-        <h1>heyyyyy :333</h1>
-        <p>are you here for my socials? or looking to get to know me?</p>
-        <div class="buttons">
-          <a class="btn" href="socials"> socials </a>
-          <a class="btn" href="about"> about me </a>
-          <a class="btn" href="button"> button only </a>
-          <button class="btn theme-button" id="theme-toggle">🌓</button>
+        <div class="brand">
+          <img src="/assets/84118320.png" alt="avatar" />
+          <span>Lachlan</span>
         </div>
-        <div class="clock-container">
-          <div id="aest-time">loading my time...</div>
-          <div class="diff-text" id="viewer-diff"></div>
-        </div>
+        <nav aria-label="Primary">
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#writing">Writing</a>
+          <a href="#contact">Contact</a>
+        </nav>
       </header>
-      <div
-        id="day-info"
-        style="
-          display: none;
-          font-size: 1.1em;
-          margin-top: 0.5em;
-          color: #cc0000;
-        "
-      ></div>
-      <div class="account-panel" id="account-panel">
-        <div id="account-content"></div>
-      </div>
-      <!-- footer -->
-      <!-- FOOTER SCRIPT -->
-    </main>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+      <section class="hero" id="about">
+        <article class="card">
+          <div class="status" aria-live="polite">
+            <span class="dot" aria-hidden="true"></span> available for work or
+            cool project ideas
+          </div>
+          <h1>hey. i'm lachlanm05. a dev, sometimes useful, sometimes paid.</h1>
+          <p class="muted">
+            mostly python, c#, js. i mainly use windows (arch, when windows
+            innevitably gets worse). my main server is running arch (ex-ubuntu).
+          </p>
+          <div class="badges">
+            <span class="badge">Arch + KDE</span>
+            <span class="badge">C#</span>
+            <span class="badge">Flask · Node</span>
+            <span class="badge">HTML · CSS · JS</span>
+          </div>
+          <div class="links" style="margin-top: 14px">
+            <a href="https://lachlanm05.com" target="_blank" rel="noopener"
+              >Website</a
+            >
+            <a
+              href="https://github.com/LachlanM05"
+              target="_blank"
+              rel="noopener"
+              >GitHub</a
+            >
+            <a href="mailto:webcatch@lachlanm05.com">Email</a>
+          </div>
+        </article>
+        <aside class="card">
+          <div class="kicker">Now</div>
+          <p class="muted">
+            working on a few personal projects. will share soon. maybe.
+          </p>
+          <div class="kicker" style="margin-top: 14px">Stacks I enjoy</div>
+          <ul>
+            <li>Static HTML + CSS</li>
+            <li>Flask for APIs & dashboards</li>
+            <li>Node + mineflayer for MC agents</li>
+            <li>Apache reverse proxying</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section id="projects" class="grid" aria-label="Projects">
+        <div class="tile" style="grid-column: span 12">
+          <div class="kicker">Featured Projects</div>
+          <div class="projects" style="margin-top: 10px">
+            <article class="project">
+              <div class="meta">
+                <h3>DDMC</h3>
+                <span class="tag">2025</span>
+              </div>
+              <p class="muted">
+                a python based doki doki literature club mod manager with gui.
+                will 2.0 ever be released? idk. maybe.
+              </p>
+              <div class="tags">
+                <span class="tag">Python</span><span class="tag">hell</span
+                ><span class="tag">why did i not make comments</span>
+              </div>
+              <div class="links">
+                <a href="https://lachlanm05.com/ddmc">Live</a>
+                <a href="https://github.com/LachlanM05/ddmc">Source</a>
+              </div>
+            </article>
+            <article class="project">
+              <div class="meta">
+                <h3>Goober</h3>
+                <span class="tag">2025</span>
+              </div>
+              <p class="muted">mii inspired avatar creator.</p>
+              <div class="tags">
+                <span class="tag">JavaScript</span><span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+              </div>
+              <div class="links">
+                <a href="https://goober.lachlanm05.com">Live</a>
+                <a href="https://github.com/LachlanM05/goober">Source</a>
+              </div>
+            </article>
+            <!--            <article class="project">
+              <div class="meta">
+                <h3></h3>
+                <span class="tag">2024</span>
+              </div>
+              <p class="muted">
+                you reading this? it's a hidden project. not that there's actually a project here, but its so i can expand later.
+              </p>
+              <div class="tags">
+                <span class="tag">HTML</span><span class="tag">CSS</span>
+              </div>
+              <div class="links"><a href="#">Live</a></div>
+            </article>  -->
+          </div>
+        </div>
+      </section>
+
+      <section id="writing" class="grid" aria-label="Writing">
+        <div class="tile" style="grid-column: span 12">
+          <div class="kicker">Writing</div>
+          <div class="cardlist" style="margin-top: 10px">
+            <div class="listitem">
+              <a href="#" class="post">placheholder.</a>
+              <span class="muted">Oct 2025</span>
+            </div>
+            <div class="listitem">
+              <a href="#" class="post">don't blame me.</a>
+              <span class="muted">Oct 2025</span>
+            </div>
+            <div class="listitem">
+              <a href="#" class="post"
+                >i just reset my server. cut me some slack, okay~?</a
+              >
+              <span class="muted">Sep 2025</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="grid" aria-label="Contact">
+        <div class="tile" style="grid-column: span 12">
+          <div class="kicker">Contact</div>
+          <p>
+            wanna just email me? go for it.
+            <a href="mailto:webcatch@lachlanm05.com">webcatch@lachlanm05.com</a
+            >.
+          </p>
+          <pre><code>$ ssh lachlan@server
+$ tail -f /var/log/app.log
+$ git push</code></pre>
+        </div>
+      </section>
+
+      <footer>© <span id="y">2025</span> Lachlan • i love you.</footer>
+    </div>
     <script>
-      // events and clock
-      const specialDays = {
-        "7-22": {
-          name: "my birthday!!!! (22/07/05)",
-          celebrate: true,
-          effect: "confetti",
-        },
-        "12-25": {
-          name: "merry christmas!",
-          celebrate: true,
-          effect: "fireworks",
-        },
-        "7-14": {
-          name: "happy button launch day!",
-          celebrate: true,
-          effect: "fireworks",
-        },
-        "1-1": {
-          name: "happy new year!!!!",
-          celebrate: true,
-          effect: "confetti",
-        },
-        // new holidays and friends birthdays go here
-      };
-
-      let alreadyCelebrated = false;
-
-      function getOrdinalSuffix(day) {
-        if (day > 3 && day < 21) return day + "th";
-        switch (day % 10) {
-          case 1:
-            return day + "st";
-          case 2:
-            return day + "nd";
-          case 3:
-            return day + "rd";
-          default:
-            return day + "th";
-        }
-      }
-
-      function updateClock() {
-        // my time here
-        const aestDate = new Date(
-          new Date().toLocaleString("en-US", { timeZone: "Australia/Sydney" })
-        );
-
-        // formatting time
-        const hour24 = aestDate.getHours();
-        const hour12 = (hour24 % 12 || 12).toString().padStart(2, "0");
-        const minutes = aestDate.getMinutes().toString().padStart(2, "0");
-        const seconds = aestDate.getSeconds().toString().padStart(2, "0");
-        const ampm = hour24 >= 12 ? "PM" : "AM";
-        const formattedTime = `${hour12}:${minutes}:${seconds} ${ampm}`;
-
-        // formatting date
-        const day = aestDate.getDate();
-        const month = aestDate.getMonth() + 1; // 0-based
-        const key = `${month}-${day}`;
-        const monthName = aestDate.toLocaleString("en-AU", { month: "long" });
-        const formattedDate = `${getOrdinalSuffix(day)} of ${monthName}`;
-
-        // displaying them
-        document.getElementById(
-          "aest-time"
-        ).textContent = `time: ${formattedTime}, ${formattedDate}`;
-
-        // calc time dif from viewer
-        const viewerDate = new Date();
-        const diffHours = Math.round(
-          (aestDate - viewerDate) / (1000 * 60 * 60)
-        );
-        let diffText =
-          diffHours === 0
-            ? "hello other aussie"
-            : `you're ${Math.abs(diffHours)} hour${
-                Math.abs(diffHours) !== 1 ? "s" : ""
-              } ${diffHours > 0 ? "behind" : "ahead of"} me.`;
-        document.getElementById("viewer-diff").textContent = diffText;
-
-        // events
-        const special = specialDays[key];
-        const dayInfo = document.getElementById("day-info");
-
-        if (special) {
-          dayInfo.textContent = special.name;
-          dayInfo.style.display = "block";
-
-          if (special.celebrate && !alreadyCelebrated) {
-            alreadyCelebrated = true;
-
-            if (special.effect === "confetti") {
-              confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
-            } else if (special.effect === "fireworks") {
-              const interval = setInterval(() => {
-                confetti({
-                  particleCount: 100,
-                  angle: 60 + Math.random() * 60,
-                  spread: 100,
-                  origin: { x: Math.random(), y: Math.random() / 2 },
-                });
-              }, 500);
-              setTimeout(() => clearInterval(interval), 5000);
-            }
-          }
-        } else {
-          dayInfo.style.display = "none";
-        }
-      }
-
-      setInterval(updateClock, 1000);
-      updateClock();
-    </script>
-
-
-
-   
-
-    <footer class="site-footer">
-      <div class="footer-inner">
-        <p id="footer-credits">
-          © 2025 LachlanM05 —
-          <span id="footer-random"> loading… </span>
-        </p>
-        <p>
-          <a href="https://lachlanm05.com/privacy_tos"> Privacy &amp; Terms </a>
-          ·
-          <a href="mailto:lachlanm05@gmail.com"> Contact </a>
-          ·
-          <a href="https://github.com/lachlanm05"> GitHub </a>
-        </p>
-      </div>
-    </footer>
-    <script>
-      (async function () {
-        const target = document.getElementById("footer-random");
-        const fallback = "built with HTML, CSS, and coffee.";
-
-        try {
-          const res = await fetch("/credits.txt", { cache: "no-cache" });
-          if (!res.ok) throw new Error("Failed to load credits.txt");
-          const text = await res.text();
-
-          const lines = text
-            .split(/\r?\n/)
-            .map((l) => l.trim())
-            .filter((l, idx) =>
-              l &&
-              !l.startsWith("#") &&
-            idx !== 41 // skip line 42
-          );
-
-          const pick =
-            lines.length > 0
-              ? lines[Math.floor(Math.random() * lines.length)]
-              : fallback;
-
-          target.textContent = pick;
-        } catch (e) {
-          console.error(e);
-          target.textContent = fallback;
-        }
-      })();
+      document.getElementById("y").textContent = new Date().getFullYear();
     </script>
   </body>
-
-  <!-- other scripts -->
-  <script>
-    // dark and light mode toggle
-    function setCookie(name, value, days) {
-      const expires = new Date(Date.now() + days * 864e5).toUTCString();
-      document.cookie = `${name}=${encodeURIComponent(
-        value
-      )}; expires=${expires}; path=/`;
-    }
-
-    function getCookie(name) {
-      return document.cookie.split("; ").reduce((r, v) => {
-        const parts = v.split("=");
-        return parts[0] === name ? decodeURIComponent(parts[1]) : r;
-      }, "");
-    }
-
-    function applyTheme(theme) {
-      if (theme === "dark") {
-        document.body.classList.add("dark-mode");
-      } else {
-        document.body.classList.remove("dark-mode");
-      }
-
-      setCookie("theme", theme, 365);
-    }
-
-    const savedTheme = getCookie("theme") || "dark";
-    applyTheme(savedTheme);
-
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-      const currentTheme = document.body.classList.contains("dark-mode")
-        ? "dark"
-        : "light";
-      const newTheme = currentTheme === "dark" ? "light" : "dark";
-
-      applyTheme(newTheme);
-
-      if (newTheme === "light") {
-      }
-    });
-  </script>
-  <!-- ACCOUNT STUFF -->
-  <script>
-    const btn = document.getElementById("account-btn");
-    const panel = document.getElementById("account-panel");
-    const overlay = document.getElementById("modal-overlay");
-    const userDisplay = document.getElementById("user-display");
-    const userNameEl = document.getElementById("user-name");
-
-    btn.addEventListener("click", () => {
-      panel.classList.toggle("show");
-      overlay.classList.toggle("show");
-
-      const content = document.getElementById("account-content");
-      if (!content) return;
-
-      fetch("/dashboard", {
-        method: "GET",
-        credentials: "include",
-      })
-        .then((res) => (res.status === 401 ? "not_logged_in" : res.text()))
-        .then((html) => {
-          if (html === "not_logged_in") {
-            content.innerHTML = `
-        <div class="tab-switch">
-          <button id="login-tab" class="active">Login</button>
-          <button id="signup-tab">Sign Up</button>
-        </div>
-
-        <div id="login-form-wrap">
-          <form id="login-form">
-            <input name="username" placeholder="Username" required><br>
-            <input name="password" type="password" placeholder="Password" required><br>
-            <button type="submit">Log In</button>
-          </form>
-        </div>
-
-        <div id="signup-form-wrap" style="display:none;">
-          <form id="signup-form">
-            <input name="email" placeholder="Email (Gmail/Outlook only)" required><br>
-            <input name="username" placeholder="Username" required><br>
-            <input name="password" type="password" placeholder="Password" required><br>
-            <button type="submit">Sign Up</button>
-          </form>
-        </div>
-      `;
-
-            // tabs
-            const loginTab = document.getElementById("login-tab");
-            const signupTab = document.getElementById("signup-tab");
-            const loginWrap = document.getElementById("login-form-wrap");
-            const signupWrap = document.getElementById("signup-form-wrap");
-
-            loginTab.addEventListener("click", () => {
-              loginTab.classList.add("active");
-              signupTab.classList.remove("active");
-              loginWrap.style.display = "block";
-              signupWrap.style.display = "none";
-            });
-
-            signupTab.addEventListener("click", () => {
-              signupTab.classList.add("active");
-              loginTab.classList.remove("active");
-              signupWrap.style.display = "block";
-              loginWrap.style.display = "none";
-            });
-
-            // login
-            document
-              .getElementById("login-form")
-              .addEventListener("submit", (e) => {
-                e.preventDefault();
-                const data = new FormData(e.target);
-                fetch("/login", {
-                  method: "POST",
-                  body: data,
-                  credentials: "include",
-                }).then(async (res) => {
-                  const text = await res.text();
-                  if (res.ok) {
-                    userNameEl.textContent = data.get("username");
-                    userDisplay.style.display = "block";
-                    panel.classList.remove("show");
-                    overlay.classList.remove("show");
-                  } else {
-                    content.innerHTML = `<p>❌ ${text}</p>`;
-                  }
-                });
-              });
-
-            // Signup
-            document
-              .getElementById("signup-form")
-              .addEventListener("submit", (e) => {
-                e.preventDefault();
-                const data = new FormData(e.target);
-                fetch("/signup", {
-                  method: "POST",
-                  body: data,
-                  credentials: "include",
-                }).then(async (res) => {
-                  const text = await res.text();
-                  if (res.ok) {
-                    content.innerHTML = `
-              <p>good work.</p>
-              <p>check your spam for verification.</p>
-            `;
-                  } else {
-                    content.innerHTML = `<p>no ${text}</p>`;
-                  }
-                });
-              });
-          } else {
-            content.innerHTML = html;
-          }
-        });
-    });
-
-    // close on modal click
-    overlay.addEventListener("click", () => {
-      panel.classList.remove("show");
-      overlay.classList.remove("show");
-    });
-
-    // show name in corner on page load
-    window.addEventListener("DOMContentLoaded", () => {
-      fetch("/dashboard", {
-        method: "GET",
-        credentials: "include",
-      })
-        .then((res) => (res.status === 401 ? null : res.text()))
-        .then((html) => {
-          if (html && html.includes("Welcome")) {
-            const match = html.match(/Welcome,\s*(\w+)/);
-            if (match) {
-              userNameEl.textContent = match[1];
-              userDisplay.style.display = "block";
-            }
-          }
-        });
-    });
-  </script>
 </html>
