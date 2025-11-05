@@ -365,7 +365,7 @@ function applyEffect(mode) {
   <p class="muted">${text}</p>
   ${
     key === "birthday"
-      ? `<button id="replay-bday" class="bday-btn">Play Song 🎶</button>`
+      ? `<button id="replay-bday" class="bday-btn">Play Tune 🎶</button>`
       : ""
   }
 `;
