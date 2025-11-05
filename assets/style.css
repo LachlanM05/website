@@ -30,8 +30,10 @@ you can't make me. OHHHH CHATGPT, WRITE MY CSS COMMENTS!!!
   --danger: #ff7a7a;
   --radius: 14px;
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
-  --sans: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Noto Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono",
+    monospace;
+  --sans: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell,
+    "Noto Sans", "Helvetica Neue", Arial, sans-serif;
   --maxw: 1100px;
 }
 
@@ -407,7 +409,12 @@ pre {
 
 /* Snowflake visuals */
 .flake {
-  background: radial-gradient(circle, #fff 0 40%, rgba(255, 255, 255, 0.7) 41% 70%, transparent 71%);
+  background: radial-gradient(
+    circle,
+    #fff 0 40%,
+    rgba(255, 255, 255, 0.7) 41% 70%,
+    transparent 71%
+  );
   border-radius: 50%;
   animation: fx-fall linear infinite;
   opacity: 0.9;
@@ -510,14 +517,23 @@ body.has-cobwebs::after {
   }
 }
 
-.hidden { display: none !important; }
+.hidden {
+  display: none !important;
+}
 
 /* Event panel visuals */
 .event-panel {
   border: 1px solid var(--border);
-  background:
-    radial-gradient(80% 120% at -10% -20%, rgba(122,170,255,0.12), transparent 60%),
-    radial-gradient(80% 120% at 110% -20%, rgba(255,122,170,0.12), transparent 60%),
+  background: radial-gradient(
+      80% 120% at -10% -20%,
+      rgba(122, 170, 255, 0.12),
+      transparent 60%
+    ),
+    radial-gradient(
+      80% 120% at 110% -20%,
+      rgba(255, 122, 170, 0.12),
+      transparent 60%
+    ),
     var(--card);
   border-radius: var(--radius);
   padding: 18px;
@@ -527,7 +543,7 @@ body.has-cobwebs::after {
   font: 700 12px var(--mono);
   color: var(--muted);
   text-transform: uppercase;
-  letter-spacing: .3px;
+  letter-spacing: 0.3px;
   margin-bottom: 8px;
 }
 
@@ -541,6 +557,20 @@ body.has-cobwebs::after {
   color: var(--muted);
 }
 
+.bday-btn {
+  margin-top: 8px;
+  padding: 6px 14px;
+  border-radius: 4px;
+  background: var(--accent, #ff73b9);
+  color: #fff;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.bday-btn:hover {
+  background: var(--accent-hover, #ff5ca8);
+}
 
 /*
 well, chatgpt, you did well.

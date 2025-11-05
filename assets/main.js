@@ -3,7 +3,7 @@ const FX_ROOT_ID = "fx-root";
 const SPLASH_ID = "splash-screen";
 const BDAY_AUDIO_ID = "birthday-audio";
 
-let fakeDate = null;     // if fake date is set, use instead of real date.
+let fakeDate = null; // if fake date is set, use instead of real date.
 let runningCleanup = null; // cleanup current function
 let fireworksTicker = null;
 
@@ -18,20 +18,26 @@ function now() {
 function isBetween(date, startMonth, startDay, endMonth, endDay) {
   const y = date.getFullYear();
   const start = new Date(y, startMonth - 1, startDay, 0, 0, 0);
-  const end   = new Date(y, endMonth   - 1, endDay, 23, 59, 59);
+  const end = new Date(y, endMonth - 1, endDay, 23, 59, 59);
   return date >= start && date <= end;
 }
 
 // check if date matches month/day
 function isDate(date, month, day) {
-  return date.getMonth() === (month - 1) && date.getDate() === day;
+  return date.getMonth() === month - 1 && date.getDate() === day;
 }
 
 // DOM utils
-function $(sel) { return document.querySelector(sel); }
-function create(tag, cls) { const el = document.createElement(tag); if (cls) el.className = cls; return el; }
+function $(sel) {
+  return document.querySelector(sel);
+}
+function create(tag, cls) {
+  const el = document.createElement(tag);
+  if (cls) el.className = cls;
+  return el;
+}
 function prefersReducedMotion() {
-  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
 // clear all fx nodes from effect root
@@ -63,7 +69,11 @@ function initSplash() {
     if (isDate(d, 7, 22)) {
       const audio = document.getElementById(BDAY_AUDIO_ID);
       if (audio) {
-        try { await audio.play(); } catch { /* browser would normally block, but due to splash screen, should work fine */ }
+        try {
+          await audio.play();
+        } catch {
+          /* browser would normally block, but due to splash screen, should work fine */
+        }
       }
     }
     splash.classList.add("fade-out");
@@ -85,11 +95,11 @@ function startSnow() {
     const flake = create("div", "fx flake");
     flake.style.left = Math.random() * 100 + "vw";
     // randomize duration/size/delay a bit
-    const size = (Math.random() * 6 + 4); // 4px-10px
+    const size = Math.random() * 6 + 4; // 4px-10px
     flake.style.width = size + "px";
     flake.style.height = size + "px";
-    flake.style.animationDuration = (Math.random() * 6 + 8) + "s";
-    flake.style.animationDelay = (Math.random() * 8) + "s";
+    flake.style.animationDuration = Math.random() * 6 + 8 + "s";
+    flake.style.animationDelay = Math.random() * 8 + "s";
     root.appendChild(flake);
     nodes.push(flake);
   }
@@ -98,10 +108,10 @@ function startSnow() {
     if (!document.body.contains(root)) return;
     const flake = create("div", "fx flake");
     flake.style.left = Math.random() * 100 + "vw";
-    const size = (Math.random() * 6 + 4);
+    const size = Math.random() * 6 + 4;
     flake.style.width = size + "px";
     flake.style.height = size + "px";
-    flake.style.animationDuration = (Math.random() * 6 + 8) + "s";
+    flake.style.animationDuration = Math.random() * 6 + 8 + "s";
     root.appendChild(flake);
     // clean up each flake after it falls
     flake.addEventListener("animationend", () => flake.remove());
@@ -109,7 +119,7 @@ function startSnow() {
 
   return () => {
     clearInterval(spawnInterval);
-    nodes.forEach(n => n.remove());
+    nodes.forEach((n) => n.remove());
   };
 }
 
@@ -124,22 +134,22 @@ function startHearts() {
   for (let i = 0; i < COUNT; i++) {
     const heart = create("div", "fx heart");
     heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDuration = (Math.random() * 6 + 10) + "s";
-    heart.style.animationDelay = (Math.random() * 8) + "s";
+    heart.style.animationDuration = Math.random() * 6 + 10 + "s";
+    heart.style.animationDelay = Math.random() * 8 + "s";
     root.appendChild(heart);
     nodes.push(heart);
   }
   const spawnInterval = setInterval(() => {
     const heart = create("div", "fx heart");
     heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDuration = (Math.random() * 6 + 10) + "s";
+    heart.style.animationDuration = Math.random() * 6 + 10 + "s";
     root.appendChild(heart);
     heart.addEventListener("animationend", () => heart.remove());
   }, 1600);
 
   return () => {
     clearInterval(spawnInterval);
-    nodes.forEach(n => n.remove());
+    nodes.forEach((n) => n.remove());
   };
 }
 
@@ -177,16 +187,21 @@ function startFireworks() {
   resize();
   window.addEventListener("resize", resize);
 
-  function spawnBurst(cx = Math.random() * canvas.width, cy = Math.random() * canvas.height * 0.6 + canvas.height * 0.1, count = 80) {
+  function spawnBurst(
+    cx = Math.random() * canvas.width,
+    cy = Math.random() * canvas.height * 0.6 + canvas.height * 0.1,
+    count = 80
+  ) {
     for (let i = 0; i < count; i++) {
       const angle = Math.random() * Math.PI * 2;
       const speed = Math.random() * 3 + 2;
       particles.push({
-        x: cx, y: cy,
+        x: cx,
+        y: cy,
         vx: Math.cos(angle) * speed,
         vy: Math.sin(angle) * speed,
         life: 60 + Math.random() * 30,
-        alpha: 1
+        alpha: 1,
       });
     }
   }
@@ -196,7 +211,7 @@ function startFireworks() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.globalCompositeOperation = "lighter";
 
-    particles.forEach(p => {
+    particles.forEach((p) => {
       p.x += p.vx;
       p.y += p.vy;
       p.vy += 0.03; // gravity
@@ -207,7 +222,7 @@ function startFireworks() {
       ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
       ctx.fill();
     });
-    particles = particles.filter(p => p.life > 0 && p.alpha > 0.02);
+    particles = particles.filter((p) => p.life > 0 && p.alpha > 0.02);
   }
   tick();
 
@@ -239,22 +254,34 @@ function startFireworks() {
 // effect routing
 function chooseEffect(dateObj) {
   // order matters for single-day events taking priority
-  if (isDate(dateObj, 1, 1)) return "fireworks";                 // Jan 1
-  if (isDate(dateObj, 2, 14)) return "hearts";                    // Feb 14
-  if (isDate(dateObj, 7, 22)) return "birthday";                  // Jul 22 
-  if (dateObj.getMonth() === 9) return "cobwebs";                 // October
-  if (isBetween(dateObj, 11, 1, 12, 30)) return "snow";           // Nov 1 - Dec 30
+  if (isDate(dateObj, 1, 1)) return "fireworks"; // Jan 1
+  if (isDate(dateObj, 2, 14)) return "hearts"; // Feb 14
+  if (isDate(dateObj, 7, 22)) return "birthday"; // Jul 22
+  if (dateObj.getMonth() === 9) return "cobwebs"; // October
+  if (isBetween(dateObj, 11, 1, 12, 30)) return "snow"; // Nov 1 - Dec 30
   return null;
 }
 
 function applyEffect(mode) {
-  if (runningCleanup) { try { runningCleanup(); } catch {} }
+  if (runningCleanup) {
+    try {
+      runningCleanup();
+    } catch {}
+  }
   clearFxRoot();
   switch (mode) {
-    case "snow": runningCleanup = startSnow(); break;
-    case "hearts": runningCleanup = startHearts(); break;
-    case "cobwebs": runningCleanup = startCobwebs(); break;
-    case "fireworks": runningCleanup = startFireworks(); break;
+    case "snow":
+      runningCleanup = startSnow();
+      break;
+    case "hearts":
+      runningCleanup = startHearts();
+      break;
+    case "cobwebs":
+      runningCleanup = startCobwebs();
+      break;
+    case "fireworks":
+      runningCleanup = startFireworks();
+      break;
     case "birthday":
       // no visual loop required, but still set mode
       setMode("birthday");
@@ -263,6 +290,10 @@ function applyEffect(mode) {
     default:
       runningCleanup = () => {};
   }
+
+  // refresh event panel whenever the effect changes
+  if (typeof window !== "undefined" && window.__renderEventPanel)
+    window.__renderEventPanel();
 }
 
 (function () {
@@ -275,10 +306,11 @@ function applyEffect(mode) {
   }
 
   function computeEventKey(d) {
-    // Single-day events override month-wide ones
-    if (isDate(d, 1, 1))  return "newyear";     // Jan 1
-    if (isDate(d, 2, 14)) return "valentines";  // Feb 14
-    if (isDate(d, 7, 22)) return "birthday";    // Jul 22
+    // single-day events override month-wide ones
+    if (isDate(d, 1, 1)) return "newyear"; // Jan 1
+    if (isDate(d, 2, 14)) return "valentines"; // Feb 14
+    if (isDate(d, 7, 22)) return "birthday"; // Jul 22
+        if (isBetween(d, 11, 1, 12, 30)) return "snow"; // Nov 1 - Dec 30
     if (d.getMonth() === 9) return "halloween"; // October
     return null;
   }
@@ -286,24 +318,30 @@ function applyEffect(mode) {
   const COPY = {
     newyear: {
       eyebrow: "Current Event",
-      title: () => `Happy New Year ${now().getFullYear()}! 🎆`,
-      text:  "Kicking off the year with fireworks and fresh code."
+      title: () => `happy new year ${now().getFullYear()}!`,
+      text: "happy new year! now go party or enjoy yourself some way, and get off my website :3",
     },
     valentines: {
       eyebrow: "Current Event",
-      title: () => "Happy Valentine’s Day 💘",
-      text:  "Floating hearts today. Be kind, hydrate, commit often."
+      title: () => "Happy Valentine’s Day!",
+      text: "if you are reading this, i love you <333",
     },
     birthday: {
       eyebrow: "Current Event",
-      title: () => "It's my birthday! 🎂",
-      text:  "Thanks for dropping by on July 22 — there may be confetti."
+      title: () => "It's my birthday!",
+      text: "my birthday!!! (22nd July)",
     },
+    snow: {
+      eyebrow: "Current Event",
+      title: () => "snow time!",
+      text: "mariah carey has been dethawed. all i want for christmas is you~!",
+    },
+
     halloween: {
       eyebrow: "Current Event",
-      title: () => "Spooky Season 👻",
-      text:  "October mode: cobwebs engaged. Beware haunted scope creep."
-    }
+      title: () => "spook season (effect not working atm)",
+      text: "it will have cobwebs. idk about anything else though.",
+    },
   };
 
   function render() {
@@ -322,17 +360,37 @@ function applyEffect(mode) {
     section.classList.remove("hidden");
     section.setAttribute("aria-live", "polite");
     tile.innerHTML = `
-      <div class="eyebrow">${eyebrow}</div>
-      <h3>${typeof title === "function" ? title() : title}</h3>
-      <p class="muted">${text}</p>
-    `;
+  <div class="eyebrow">${eyebrow}</div>
+  <h3>${typeof title === "function" ? title() : title}</h3>
+  <p class="muted">${text}</p>
+  ${
+    key === "birthday"
+      ? `<button id="replay-bday" class="bday-btn">Play Song 🎶</button>`
+      : ""
   }
+`;
+
+    // if it's the birthday event, hook up the button
+    if (key === "birthday") {
+      const btn = document.getElementById("replay-bday");
+      if (btn) {
+        btn.addEventListener("click", () => {
+          const audio = document.getElementById("birthday-audio");
+          if (audio) {
+            audio.currentTime = 0;
+            audio.play().catch(() => console.warn("Autoplay blocked"));
+          }
+        });
+      }
+    }
+  }
+  // make event-panel renderer callable from outside this IIFE
+  window.__renderEventPanel = render;
 
   // initial + keep fresh every minute
   ready(render);
   setInterval(render, 60 * 1000);
 })();
-
 
 // midnight checker
 let midnightTimer = null;
@@ -350,7 +408,7 @@ function setFakeDate(input) {
   if (!input) {
     fakeDate = null;
   } else {
-    const d = (input instanceof Date) ? input : new Date(input);
+    const d = input instanceof Date ? input : new Date(input);
     if (isNaN(d)) {
       console.warn("Invalid date for setFakeDate");
       return;
@@ -360,6 +418,9 @@ function setFakeDate(input) {
   // immediately re-apply effect when date changes
   const mode = chooseEffect(now());
   applyEffect(mode);
+  if (typeof window !== "undefined" && window.__renderEventPanel)
+    window.__renderEventPanel();
+
   console.log("Active mode:", mode || "none", " • current date:", now());
 }
 
