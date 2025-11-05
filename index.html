@@ -15,6 +15,44 @@
   </head>
 
   <body>
+    <!-- splash screen -->
+    <div id="splash-screen">
+      <div class="splash-content">
+        <h1>welcome on in, internet stranger.</h1>
+        <p>click anywhere to continue</p>
+        <footer>
+          © <span id="splash-year">2025</span> Lachlan • i love you.
+        </footer>
+      </div>
+    </div>
+
+    <!-- birthday audio preload -->
+    <!--
+         if you are reading this, you are probably quite the curious one, right? 
+         i don't mind :), poke around, in-fact, i encourage it.
+         
+         wanna change what seasonal effect is on? use the following:
+         setFakeDate("YYYY-MM-DDTHH:mm:ss")
+         where, YYYY is the year, MM is the month (01-12), and DD is the day.
+         T is the separator between the date and time. HH is the hour (00-23), mm is the minute, and ss is the seconds.
+         
+         for example, to set the date to the date of writing, you would use:
+         setFakeDate("2025-11-04T20:46:23")
+         and to clear,
+         clearFakeDate()
+        
+         the current events are as follows:
+         Jan 1st, fireworks (guaranteed burst at 00:00, for new years.)
+         Feb 14th, floating hearts loop (Valentine's Day)
+         Jul 22nd, birthday.mp3 plays (my birthday :3)
+         October, cobwebs in the top corners of the site (halloween, obviously)
+         
+         for more information on the JavaScript and other things happening here,
+         take a peak at https://github.com/LachlanM05/website 
+    -->
+    <div id="fx-root" aria-hidden="true"></div>
+    <audio id="birthday-audio" src="assets/birthday.mp3" preload="auto"></audio>
+
     <div class="wrap">
       <header>
         <div class="brand">
@@ -68,7 +106,8 @@
           <ul>
             <li>Static HTML + CSS</li>
             <li>Flask for APIs & dashboards</li>
-            <li>Node + mineflayer for MC agents</li>
+            <li>Node + Mineflayer for MC agents</li>
+            <sub>(project coming soon i swear)</sub>
             <li>Apache reverse proxying</li>
           </ul>
         </aside>
@@ -150,24 +189,29 @@
         </div>
       </section>
 
+      <section id="event" class="grid hidden" aria-label="Current Event">
+        <div class="tile event-panel" style="grid-column: span 12">
+          <!-- js will actually add content -->
+        </div>
+      </section>
+
       <section id="contact" class="grid" aria-label="Contact">
         <div class="tile" style="grid-column: span 12">
           <div class="kicker">Contact</div>
           <p>
-            wanna just email me? go for it.
+            wanna email me? go for it.
             <a href="mailto:webcatch@lachlanm05.com">webcatch@lachlanm05.com</a
             >.
           </p>
-          <pre><code>$ ssh lachlan@server
-$ tail -f /var/log/app.log
-$ git push</code></pre>
+          <pre><code>$ ssh lachlan@minion
+$ rm -rf /srv/
+$ sudo shutdown --now</code></pre>
         </div>
       </section>
 
       <footer>© <span id="y">2025</span> Lachlan • i love you.</footer>
     </div>
-    <script>
-      document.getElementById("y").textContent = new Date().getFullYear();
-    </script>
+
+  <script type="module" src="/assets/main.js"></script>
   </body>
 </html>
