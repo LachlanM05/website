@@ -1,2 +1,4 @@
-.htaccess
-credits.txt
+# Ignore DevBlog for now, as it's not done, and has lots of temp files,
+# and api keys that i know you are BEGGING to see.
+# so the whole of it is removed from git.
+devblog/

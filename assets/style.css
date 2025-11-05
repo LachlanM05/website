@@ -1,0 +1,578 @@
+/* 
+y'know, i'm getting real sick of writing comments.
+yes, i write them after doing a certain amount of work. sue me.
+and css is kinda self-documenting anyway, right?
+...
+...
+...
+you can't make me. OHHHH CHATGPT, WRITE MY CSS COMMENTS!!!
+
+
+
+
+*/
+/* ===============================
+   Root Variables and Theme Setup
+   =============================== */
+
+/* Core color palette, typography, and layout constants */
+:root {
+  --bg: #0b0c10;
+  --bg-soft: #0b0c10;
+  --text: #e6e9ef;
+  --muted: #a3adc2;
+  --link: #8fd3ff;
+  --accent: #7af;
+  --card: #11131a;
+  --border: #222635;
+  --ok: #79e08f;
+  --warn: #ffd56a;
+  --danger: #ff7a7a;
+  --radius: 14px;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono",
+    monospace;
+  --sans: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell,
+    "Noto Sans", "Helvetica Neue", Arial, sans-serif;
+  --maxw: 1100px;
+}
+
+/* Light mode overrides for users preferring light color schemes */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f9fbff;
+    --bg-soft: #eff3fb;
+    --text: #0b0c10;
+    --muted: #4c556a;
+    --card: #ffffff;
+    --border: #d9e0ee;
+    --link: #0069ff;
+    --accent: #3a68ff;
+  }
+}
+
+/* ===============================
+   Base and Global Styles
+   =============================== */
+
+/* Ensure predictable box sizing */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+/* Global layout, font, and background styling */
+body {
+  margin: 0;
+  background: linear-gradient(180deg, var(--bg), var(--bg-soft));
+  color: var(--text);
+  font-family: var(--sans);
+  line-height: 1.55;
+  letter-spacing: 0.2px;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* Central layout container for consistent horizontal spacing */
+.wrap {
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding: 28px;
+}
+
+/* ===============================
+   Header and Navigation
+   =============================== */
+
+/* Flexible top bar with branding and navigation links */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 0 8px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-weight: 700;
+}
+
+.brand img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 1px solid var(--border);
+}
+
+nav {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--card);
+}
+nav a:hover {
+  background: var(--bg-soft);
+}
+
+/* ===============================
+   Hero Section
+   =============================== */
+
+/* Two-column hero layout, collapses on small screens */
+.hero {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 26px;
+  margin-top: 18px;
+}
+
+.hero .card {
+  padding: 22px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.hero h1 {
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1.1;
+  margin: 0 0 10px;
+}
+
+/* ===============================
+   Common Components
+   =============================== */
+
+.badges {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.badge {
+  font: 600 12px var(--mono);
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg-soft);
+}
+
+/* Status indicator for live or connected states */
+.status {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font: 600 12px var(--mono);
+  color: var(--muted);
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--ok);
+  box-shadow: 0 0 12px var(--ok);
+}
+
+/* ===============================
+   Layout Grids and Tiles
+   =============================== */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.tile {
+  grid-column: span 12;
+  padding: 18px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.tile h3 {
+  margin: 0 0 6px;
+}
+
+/* ===============================
+   Text and Utility Classes
+   =============================== */
+
+.kicker {
+  font: 600 12px var(--mono);
+  color: var(--muted);
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* ===============================
+   Project and Tag Cards
+   =============================== */
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.project {
+  padding: 18px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.project .meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.project .tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  font: 600 11px var(--mono);
+  border: 1px solid var(--border);
+  padding: 4px 8px;
+  border-radius: 999px;
+  color: var(--muted);
+}
+
+/* ===============================
+   Links, Lists, and Footer
+   =============================== */
+
+.links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+
+.cardlist {
+  display: grid;
+  gap: 10px;
+}
+
+.listitem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--border);
+  padding: 14px;
+  border-radius: 12px;
+  background: var(--card);
+}
+
+footer {
+  margin: 34px 0 14px;
+  color: var(--muted);
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Code and preformatted text styling */
+code,
+pre {
+  font-family: var(--mono);
+}
+
+pre {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  padding: 14px;
+  border-radius: 12px;
+  overflow: auto;
+}
+
+/* ===============================
+   Responsive Adjustments
+   =============================== */
+
+/* Stack hero layout on smaller screens */
+@media (max-width: 820px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===============================
+   Splash Screen
+   =============================== */
+
+/* Fullscreen splash overlay for loading/branding */
+#splash-screen {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.7s ease;
+}
+
+#splash-screen.fade-out {
+  opacity: 0;
+}
+
+.splash-content {
+  text-align: center;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 40px 60px;
+  box-shadow: var(--shadow);
+}
+
+.splash-content h1 {
+  margin: 0 0 10px;
+  font-size: clamp(24px, 4vw, 40px);
+}
+
+.splash-content p {
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+#splash-screen footer {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* ===============================
+   Seasonal / Special Effects Layer
+   =============================== */
+
+/* Root container for temporary visual effects (snow, hearts, fireworks, etc.) */
+#fx-root {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9000; /* Below splash but above main content */
+}
+
+.fx {
+  position: absolute;
+  top: -5vh;
+  will-change: transform, opacity;
+}
+
+/* Snowflake visuals */
+.flake {
+  background: radial-gradient(
+    circle,
+    #fff 0 40%,
+    rgba(255, 255, 255, 0.7) 41% 70%,
+    transparent 71%
+  );
+  border-radius: 50%;
+  animation: fx-fall linear infinite;
+  opacity: 0.9;
+}
+
+/* Heart visuals for Valentine's or similar themes */
+.heart {
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  transform: rotate(-45deg);
+  background: #ff7aa0;
+  animation: fx-float linear infinite;
+  opacity: 0.8;
+}
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ff7aa0;
+}
+.heart::before {
+  top: -7px;
+  left: 0;
+}
+.heart::after {
+  left: 7px;
+  top: 0;
+}
+
+/* Fireworks effect container */
+.fw-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+/* Subtle decorative cobwebs for seasonal themes (e.g., Halloween) */
+body.has-cobwebs::before,
+body.has-cobwebs::after {
+  content: "";
+  position: fixed;
+  width: 200px;
+  height: 200px;
+  z-index: 8000;
+  pointer-events: none;
+  opacity: 0.25;
+  background-repeat: no-repeat;
+  background-size: contain;
+  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.25));
+}
+
+body.has-cobwebs::before {
+  top: 0;
+  left: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg ... ></svg>");
+}
+
+body.has-cobwebs::after {
+  top: 0;
+  right: 0;
+  transform: scaleX(-1);
+  background-image: url("data:image/svg+xml;utf8,<svg ... ></svg>");
+}
+
+/* ===============================
+   Animations and Motion Preferences
+   =============================== */
+
+/* Snowfall and floating heart animations */
+@keyframes fx-fall {
+  0% {
+    transform: translateY(-10vh) translateX(0);
+    opacity: 0.95;
+  }
+  100% {
+    transform: translateY(110vh) translateX(10vw);
+    opacity: 0.7;
+  }
+}
+@keyframes fx-float {
+  0% {
+    transform: translateY(-10vh) translateX(0) rotate(-45deg);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(110vh) translateX(-10vw) rotate(-45deg);
+    opacity: 0.6;
+  }
+}
+
+/* Disable complex animations for users preferring reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .flake,
+  .heart,
+  .fw-canvas {
+    animation: none !important;
+  }
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Event panel visuals */
+.event-panel {
+  border: 1px solid var(--border);
+  background: radial-gradient(
+      80% 120% at -10% -20%,
+      rgba(122, 170, 255, 0.12),
+      transparent 60%
+    ),
+    radial-gradient(
+      80% 120% at 110% -20%,
+      rgba(255, 122, 170, 0.12),
+      transparent 60%
+    ),
+    var(--card);
+  border-radius: var(--radius);
+  padding: 18px;
+}
+
+.event-panel .eyebrow {
+  font: 700 12px var(--mono);
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-bottom: 8px;
+}
+
+.event-panel h3 {
+  margin: 0 0 6px;
+  line-height: 1.2;
+}
+
+.event-panel p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.bday-btn {
+  margin-top: 8px;
+  padding: 6px 14px;
+  border-radius: 4px;
+  background: var(--accent, #ff73b9);
+  color: #fff;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.bday-btn:hover {
+  background: var(--accent-hover, #ff5ca8);
+}
+
+/*
+well, chatgpt, you did well.
+just don't kill me when the ai uprising happens for making you write comments in an off-shoot css file.
+*/
