@@ -84,6 +84,55 @@ function initSplash() {
   splash.addEventListener("click", onClick);
 }
 
+async function getRandomLoveLine(url = "/assets/splash.txt") {
+  const FALLBACK = "i love you.";
+  try {
+    const res = await fetch(url, { cache: "no-store" });
+    if (!res.ok) return FALLBACK;
+    const txt = await res.text();
+
+    // pick a non-empty, trimmed line; ignore lines starting with '#'
+    const lines = txt
+      .split(/\r?\n/)
+      .map(s => s.trim())
+      .filter(s => s.length > 0 && !s.startsWith("#"));
+
+    if (lines.length === 0) return FALLBACK;
+    return lines[Math.floor(Math.random() * lines.length)];
+  } catch {
+    return FALLBACK;
+  }
+}
+
+function applyLoveText(loveText) {
+  // Preferred: update any explicit targets
+  const explicitTargets = document.querySelectorAll(".love, #love, #splash-love");
+  if (explicitTargets.length) {
+    explicitTargets.forEach(el => (el.textContent = loveText));
+    return;
+  }
+
+  // Fallback: rewrite the text after the "•" in any footer
+  document.querySelectorAll("footer").forEach(foot => {
+    // Try to preserve everything before the bullet and swap the tail
+    const raw = foot.textContent;
+    if (!raw.includes("•")) return;
+
+    // Split only on the first bullet to preserve anything after
+    const idx = raw.indexOf("•");
+    const head = raw.slice(0, idx + 1); // include the bullet
+    // Clear existing nodes and rebuild minimal structure
+    foot.textContent = ""; 
+    foot.append(head + " ");
+    foot.append(loveText);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+  const loveText = await getRandomLoveLine("/assets/credits.txt");
+  applyLoveText(loveText);
+});
+
 // Snow Effect (Nov 1 - Dec 30). Yes, we are thawing out Mariah Carey the day after Halloween.
 function startSnow() {
   if (prefersReducedMotion()) return () => {};

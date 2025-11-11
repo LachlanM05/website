@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>PNG -> Minecraft Drop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/assets/mc-styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Minecraft Drops</h1>
+    <p>a tool i made to make funny spinning items instead of booting up minecraft each time.</p>
+  </header>
+
+  <main>
+    <section class="panel">
+      <div class="uploader">
+        <input id="fileInput" type="file" accept="image/png" />
+        <div class="or">or</div>
+        <div id="dropZone">drag &amp; PNG here</div>
+      </div>
+
+      <div class="controls">
+        <div class="row">
+          <label>Duration (s)
+            <input id="duration" type="number" min="0.5" step="0.1" value="4.6" />
+          </label>
+          <label>Frames (for custom FPS)
+            <input id="frames" type="number" min="8" step="1" value="64" />
+          </label>
+          <label>Scale
+            <input id="scale" type="number" min="0.1" step="0.1" value="1.0" />
+          </label>
+          <label>Bob amplitude
+            <input id="amplitude" type="number" min="0" step="0.01" value="0.12" />
+          </label>
+        </div>
+        <div class="row">
+          <label>Spin turns / loop
+            <input id="turns" type="number" min="0.1" step="0.1" value="1" />
+          </label>
+          <label>Bob cycles / loop
+            <input id="bobCycles" type="number" min="0" step="0.1" value="1" />
+          </label>
+          <label>Canvas size (px)
+            <input id="size" type="number" min="64" step="64" value="512" />
+          </label>
+          <label>
+            <input id="shadow" type="checkbox" checked /> Soft shadow
+          </label>
+        </div>
+
+        <div class="row">
+          <label>FPS Mode
+            <select id="fpsMode">
+              <option value="match">Match Preview (monitor/RAF)</option>
+              <option value="custom">Custom FPS</option>
+            </select>
+          </label>
+          <label>Custom FPS
+            <input id="customFps" type="number" min="1" max="240" step="1" value="60" />
+          </label>
+          <label>WebM Codec
+            <select id="codecPref">
+              <option value="vp9">VP9 (alpha-capable)</option>
+              <option value="vp8">VP8</option>
+              <option value="auto">Auto</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="buttons">
+
+          <button id="previewBtn" disabled>Preview</button>
+          <button id="renderWebmBtn" class="primary" disabled>Render WebM (Best Option)</button>
+          <button id="renderApngBtn">Render APNG</button>
+        </div>
+
+        <div id="whyBox" class="whybox" hidden>
+          <div class="whybox-title">Required:</div>
+          <ul id="whyList"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="canvasWrap">
+        <canvas id="threeCanvas"></canvas>
+      </div>
+      <div class="output">
+        <div id="progress" class="progress"></div>
+        <div id="result"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <small>:33333333333333</small>
+  </footer>
+
+  <!-- local vendor three min js -->
+  <script src="/assets/vendor/three.min.js"></script>
+  <script src="/assets/vendor/pako.min.js"></script>
+  <script src="/assets/vendor/upng.min.js"></script>
+  <script src="/assets/mc-app.js"></script>
+</body>
+</html>

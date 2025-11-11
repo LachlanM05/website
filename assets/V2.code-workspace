@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../guitarfix"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "V2"
+	}
+}

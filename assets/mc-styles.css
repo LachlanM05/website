@@ -1,0 +1,262 @@
+:root {
+  --bg: #0b0c10;
+  --panel: #11131a;
+  --text: #e6e9ef;
+  --muted: #a3adc2;
+  --accent: #7af;
+  --accent2: #8fd3ff;
+  --border: #222635;
+  --radius: 14px;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  --sans: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell,
+    "Noto Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a {
+  color: var(--accent2);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+header,
+footer {
+  padding: 16px 20px;
+}
+main {
+  padding: 0 20px 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  gap: 16px;
+}
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+button,
+.btn {
+  background: var(--accent);
+  color: #000;
+  border: none;
+  border-radius: calc(var(--radius) - 4px);
+  padding: 10px 14px;
+  cursor: pointer;
+}
+button:hover,
+.btn:hover {
+  filter: brightness(1.1);
+}
+input[type="file"],
+input[type="text"],
+select,
+textarea {
+  background: #0c0f14;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 12px 0;
+}
+small,
+.muted {
+  color: var(--muted);
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell,
+    Noto Sans, Arial;
+  margin: 0;
+  height: 100%;
+}
+header,
+footer {
+  padding: 16px 20px;
+}
+header h1 {
+  margin: 0 0 6px;
+}
+header p {
+  margin: 0;
+  color: var(--muted);
+}
+main {
+  padding: 0 20px 20px;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+}
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.uploader {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+#fileInput {
+  padding: 8px;
+  background: #0c1117;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+}
+#dropZone {
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: var(--muted);
+}
+.or {
+  color: var(--muted);
+}
+
+.controls {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.controls .row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+  color: var(--muted);
+}
+input,
+select {
+  padding: 8px;
+  background: #0c1117;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  min-width: 120px;
+}
+.buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+button {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #0c1117;
+  color: var(--text);
+  cursor: pointer;
+}
+button.primary {
+  background: var(--btn);
+  color: var(--btnText);
+  border-color: transparent;
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.canvasWrap {
+  width: 100%;
+  overflow: hidden;
+  aspect-ratio: 1/1;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+#threeCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.output {
+  margin-top: 12px;
+}
+.progress {
+  height: 8px;
+  background: #0c1117;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.progress::after {
+  content: "";
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  transition: width 0.15s linear;
+}
+#result {
+  margin-top: 12px;
+  display: grid;
+  gap: 8px;
+}
+#result img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.whybox {
+  margin-top: 10px;
+  background: #0c1117;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px;
+}
+.whybox-title {
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.whybox ul {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+}
+
+@media (min-width: 980px) {
+  main {
+    grid-template-columns: 1.1fr 1fr;
+  }
+}
