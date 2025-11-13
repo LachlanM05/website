@@ -5,6 +5,75 @@
   <title>PNG -> Minecraft Drop</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="/assets/mc-styles.css" />
+
+  <!--
+    Confused on this following script? It's a UTM tracker.
+    It tracks what referred you here and sends it to my API.
+    For example, if you came from my steam profile, it'd have:
+    ?utm_source=steamcommunity.com
+    Which sends back that you came from my steam(or other steam profile).
+    Then you will also see something appended to it like:
+    &utm_campaign=steamprofile_abtme
+    Which further identifies where you came from.
+    So a full utm url might look like:
+    https://lachlanm05.com/?utm_source=steamcommunity&utm_campaign=steamprofile_abtme
+    And the whole purpose of such is to find out where people are coming from.
+    As I can see where in the world people are coming from based on IP's, but not anything else.
+    -->
+  <script>
+    (function () {
+      // run asap, but safe
+      function getCookie(n) {
+        return document.cookie.split('; ').reduce((r, v) => {
+          const p = v.split('=');
+          return p[0] === n ? decodeURIComponent(p[1]) : r
+        }, null);
+      }
+
+      function setCookie(n, v, days) {
+        const d = new Date();
+        d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+        document.cookie = n + "=" + encodeURIComponent(v)
+          + ";expires=" + d.toUTCString() + ";path=/;SameSite=Lax";
+      }
+
+      // check UTM params immediat
+      var url = new URL(window.location.href);
+      var params = url.searchParams;
+      var keys = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"];
+
+      var hasUTM = false;
+      var payload = {};
+      keys.forEach(k => {
+        if (params.has(k)) {
+          hasUTM = true;
+          payload[k] = params.get(k);
+        }
+      });
+
+      if (!hasUTM) return;
+
+      // prevent duping on auto refresh / SPA nav
+      if (getCookie("lm_reftrack_sent") === "1") return;
+
+      payload.full_url = window.location.href;
+      payload.landing_path = window.location.pathname + window.location.search;
+
+      // send immediatialy using keepalive so it works even if user quick leaves
+      try {
+        fetch("https://lachlanm05.com/api/reftrack", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          keepalive: true,
+          body: JSON.stringify(payload)
+        }).finally(function () {
+          setCookie("lm_reftrack_sent", "1", 1);
+        });
+      } catch (e) {
+        setCookie("lm_reftrack_sent", "1", 1);
+      }
+    })();
+  </script>
 </head>
 <body>
   <header>

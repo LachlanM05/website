@@ -1,25 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Doki Doki Modding Club - a LachlanM05 creation.</title>
     <link rel="icon" type="image/x-icon" href="/assets/ddmc/icon.ico" />
     <link rel="stylesheet" href="/assets/ddmc/ddmc-modern.css" />
-  </head>
+    
+    <!--
+    Confused on this following script? It's a UTM tracker.
+    It tracks what referred you here and sends it to my API.
+    For example, if you came from my steam profile, it'd have:
+    ?utm_source=steamcommunity.com
+    Which sends back that you came from my steam(or other steam profile).
+    Then you will also see something appended to it like:
+    &utm_campaign=steamprofile_abtme
+    Which further identifies where you came from.
+    So a full utm url might look like:
+    https://lachlanm05.com/?utm_source=steamcommunity&utm_campaign=steamprofile_abtme
+    And the whole purpose of such is to find out where people are coming from.
+    As I can see where in the world people are coming from based on IP's, but not anything else.
+    -->
+    <script>
+        (function () {
+            // run asap, but safe
+            function getCookie(n) {
+                return document.cookie.split('; ').reduce((r, v) => {
+                    const p = v.split('=');
+                    return p[0] === n ? decodeURIComponent(p[1]) : r
+                }, null);
+            }
 
-  <body>
+            function setCookie(n, v, days) {
+                const d = new Date();
+                d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+                document.cookie = n + "=" + encodeURIComponent(v)
+                    + ";expires=" + d.toUTCString() + ";path=/;SameSite=Lax";
+            }
+
+            // check UTM params immediat
+            var url = new URL(window.location.href);
+            var params = url.searchParams;
+            var keys = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"];
+
+            var hasUTM = false;
+            var payload = {};
+            keys.forEach(k => {
+                if (params.has(k)) {
+                    hasUTM = true;
+                    payload[k] = params.get(k);
+                }
+            });
+
+            if (!hasUTM) return;
+
+            // prevent duping on auto refresh / SPA nav
+            if (getCookie("lm_reftrack_sent") === "1") return;
+
+            payload.full_url = window.location.href;
+            payload.landing_path = window.location.pathname + window.location.search;
+
+            // send immediatialy using keepalive so it works even if user quick leaves
+            try {
+                fetch("https://lachlanm05.com/api/reftrack", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    keepalive: true,
+                    body: JSON.stringify(payload)
+                }).finally(function () {
+                    setCookie("lm_reftrack_sent", "1", 1);
+                });
+            } catch (e) {
+                setCookie("lm_reftrack_sent", "1", 1);
+            }
+        })();
+    </script>
+</head>
+
+<body>
     <header>
         <div class="wrap">
             <img src="assets/ddmc/ddmc.png" alt="DDMC Logo" class="ddmc-logo" />
             <nav aria-label="Primary">
-            <div class ="header-text">
-                <h1>Doki Doki Modding Club</h1>
-                <p>
-                    A DDLC Mod Launcher made with love by
-                    <a href="https://lachlanm05.com" target="_blank" rel="noopener">LachlanM05</a>
-                </p>
-            </div>
+                <div class="header-text">
+                    <h1>Doki Doki Modding Club</h1>
+                    <p>
+                        A DDLC Mod Launcher made with love by
+                        <a href="https://lachlanm05.com" target="_blank" rel="noopener">LachlanM05</a>
+                    </p>
+                </div>
         </div>
     </header>
 
@@ -27,8 +97,10 @@
         <section class="card">
             <h2>What is Doki Doki Modding Club?</h2>
             <p>
-                DDMC is a mod launcher/manager for Doki Doki Literature Club. It started as a project for myself, but I thought others may find it useful too.
-                Read the <a href="https://github.com/LachlanM05/ddmc" target=""_blank" rel="noopener">Source Code</a> here.
+                DDMC is a mod launcher/manager for Doki Doki Literature Club. It started as a project for myself, but I
+                thought others may find it useful too.
+                Read the <a href="https://github.com/LachlanM05/ddmc" target="" _blank" rel="noopener">Source Code</a>
+                here.
             </p>
         </section>
 
@@ -52,18 +124,21 @@
                 <a class="buttonlike" href="/assets/ddmc/ddlc_manager.exe" download>
                     Download DDMC (EXE - New update sometime, maybe.) <small>Pre-Compiled</small>
                 </a>
+                <!--
+                Update? Me? Never.
+                -->
             </div>
         </section>
     </main>
-    </body>
-  <footer>
+</body>
+<footer>
     <div class="wrap">
-      <div class="footer-inner">
-        <p>© 2025 LachlanM05 — <a href="https://discord.gg/QWfq3feYnn" target="_blank">Join the Discord</a></p>
-        <p id="credit-line" aria-live="polite"></p>
-      </div>
+        <div class="footer-inner">
+            <p>© 2025 LachlanM05 — <a href="https://discord.gg/QWfq3feYnn" target="_blank">Join the Discord</a></p>
+            <p id="credit-line" aria-live="polite"></p>
+        </div>
     </div>
-  </footer>
-  <script src="/assets/ddmc/ddmc-footer.js" defer></script>
+</footer>
+<script src="/assets/ddmc/ddmc-footer.js" defer></script>
 
 </html>

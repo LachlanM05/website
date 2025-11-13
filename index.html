@@ -1,34 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>LachlanM05's Website</title>
-    <meta
-      name="description"
-      content="LachlanM05, wishes to be just a little guy. if you read this you're cute."
-    />
-    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
-    <link rel="manifest" href="/assets/site.manifest" />
-    <meta name="colour-scheme" content="dark light" />
-    <link rel="stylesheet" href="/assets/style.css" />
-  </head>
 
-  <body>
-    <!-- splash screen -->
-    <div id="splash-screen">
-      <div class="splash-content">
-        <h1>welcome on in, internet stranger.</h1>
-        <p>click anywhere to continue</p>
-        <footer>
-          © <span id="splash-year">2025</span> Lachlan •
-          <span class="love">i love you.</span>
-        </footer>
-      </div>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LachlanM05's Website</title>
+  <meta name="description" content="LachlanM05, wishes to be just a little guy. if you read this you're cute." />
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+  <link rel="manifest" href="/assets/site.manifest" />
+  <meta name="colour-scheme" content="dark light" />
+  <link rel="stylesheet" href="/assets/style.css" />
+  <!--
+    Confused on this following script? It's a UTM tracker.
+    It tracks what referred you here and sends it to my API.
+    For example, if you came from my steam profile, it'd have:
+    ?utm_source=steamcommunity.com
+    Which sends back that you came from my steam(or other steam profile).
+    Then you will also see something appended to it like:
+    &utm_campaign=steamprofile_abtme
+    Which further identifies where you came from.
+    So a full utm url might look like:
+    https://lachlanm05.com/?utm_source=steamcommunity&utm_campaign=steamprofile_abtme
+    And the whole purpose of such is to find out where people are coming from.
+    As I can see where in the world people are coming from based on IP's, but not anything else.
+    -->
+  <script>
+    (function () {
+      // run asap, but safe
+      function getCookie(n) {
+        return document.cookie.split('; ').reduce((r, v) => {
+          const p = v.split('=');
+          return p[0] === n ? decodeURIComponent(p[1]) : r
+        }, null);
+      }
+
+      function setCookie(n, v, days) {
+        const d = new Date();
+        d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+        document.cookie = n + "=" + encodeURIComponent(v)
+          + ";expires=" + d.toUTCString() + ";path=/;SameSite=Lax";
+      }
+
+      // check UTM params immediat
+      var url = new URL(window.location.href);
+      var params = url.searchParams;
+      var keys = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"];
+
+      var hasUTM = false;
+      var payload = {};
+      keys.forEach(k => {
+        if (params.has(k)) {
+          hasUTM = true;
+          payload[k] = params.get(k);
+        }
+      });
+
+      if (!hasUTM) return;
+
+      // prevent duping on auto refresh / SPA nav
+      if (getCookie("lm_reftrack_sent") === "1") return;
+
+      payload.full_url = window.location.href;
+      payload.landing_path = window.location.pathname + window.location.search;
+
+      // send immediatialy using keepalive so it works even if user quick leaves
+      try {
+        fetch("https://lachlanm05.com/api/reftrack", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          keepalive: true,
+          body: JSON.stringify(payload)
+        }).finally(function () {
+          setCookie("lm_reftrack_sent", "1", 1);
+        });
+      } catch (e) {
+        setCookie("lm_reftrack_sent", "1", 1);
+      }
+    })();
+  </script>
+</head>
+
+<body>
+  <!-- splash screen -->
+  <div id="splash-screen">
+    <div class="splash-content">
+      <h1>welcome on in, internet stranger.</h1>
+      <p>click anywhere to continue</p>
+      <footer>
+        © <span id="splash-year">2025</span> Lachlan •
+        <span class="love">i love you.</span>
+      </footer>
     </div>
+  </div>
 
-    <!-- birthday audio preload -->
-    <!--
+  <!-- birthday audio preload -->
+  <!--
          if you are reading this, you are probably quite the curious one, right? 
          i don't mind :), poke around, in-fact, i encourage it.
          
@@ -51,107 +117,100 @@
          for more information on the JavaScript and other things happening here,
          take a peak at https://github.com/LachlanM05/website 
     -->
-    <div id="fx-root" aria-hidden="true"></div>
-    <audio id="birthday-audio" src="assets/birthday.mp3" preload="auto"></audio>
+  <div id="fx-root" aria-hidden="true"></div>
+  <audio id="birthday-audio" src="assets/birthday.mp3" preload="auto"></audio>
 
-    <div class="wrap">
-      <header>
-        <div class="brand">
-          <img src="/assets/84118320.png" alt="avatar" />
-          <span>Lachlan</span>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <img src="/assets/84118320.png" alt="avatar" />
+        <span>Lachlan</span>
+      </div>
+      <nav aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#writing">Writing</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero" id="about">
+      <article class="card">
+        <div class="status" aria-live="polite">
+          <span class="dot" aria-hidden="true"></span> available for work or
+          cool project ideas
         </div>
-        <nav aria-label="Primary">
-          <a href="#about">About</a>
-          <a href="#projects">Projects</a>
-          <a href="#writing">Writing</a>
-          <a href="#contact">Contact</a>
-        </nav>
-      </header>
+        <h1>hey. i'm lachlanm05. a dev, sometimes useful, sometimes paid.</h1>
+        <p class="muted">
+          mostly python, c#, js. i mainly use windows (arch, when windows
+          innevitably gets worse). my main server is running arch (ex-ubuntu).
+        </p>
+        <div class="badges">
+          <span class="badge">Arch + KDE</span>
+          <span class="badge">C#</span>
+          <span class="badge">Flask · Node</span>
+          <span class="badge">HTML · CSS · JS</span>
+        </div>
+        <div class="links" style="margin-top: 14px">
+          <a href="https://lachlanm05.com/mc-twist" target="_blank" rel="noopener">Newest Website Feautre ;3</a>
+          <a href="https://github.com/LachlanM05" target="_blank" rel="noopener">GitHub</a>
+          <a href="mailto:webcatch@lachlanm05.com">Email</a>
+        </div>
+      </article>
+      <aside class="card">
+        <div class="kicker">Now</div>
+        <p class="muted">
+          working on a few personal projects. will share soon. maybe.
+        </p>
+        <div class="kicker" style="margin-top: 14px">Stacks I enjoy</div>
+        <ul>
+          <li>Static HTML + CSS</li>
+          <li>Flask for APIs & dashboards</li>
+          <li>Node + Mineflayer for MC agents</li>
+          <sub>(project coming soon i swear)</sub>
+          <li>Apache reverse proxying</li>
+        </ul>
+      </aside>
+    </section>
 
-      <section class="hero" id="about">
-        <article class="card">
-          <div class="status" aria-live="polite">
-            <span class="dot" aria-hidden="true"></span> available for work or
-            cool project ideas
-          </div>
-          <h1>hey. i'm lachlanm05. a dev, sometimes useful, sometimes paid.</h1>
-          <p class="muted">
-            mostly python, c#, js. i mainly use windows (arch, when windows
-            innevitably gets worse). my main server is running arch (ex-ubuntu).
-          </p>
-          <div class="badges">
-            <span class="badge">Arch + KDE</span>
-            <span class="badge">C#</span>
-            <span class="badge">Flask · Node</span>
-            <span class="badge">HTML · CSS · JS</span>
-          </div>
-          <div class="links" style="margin-top: 14px">
-            <a href="https://lachlanm05.com/mc-twist" target="_blank" rel="noopener"
-              >Newest Website Feautre ;3</a
-            >
-            <a
-              href="https://github.com/LachlanM05"
-              target="_blank"
-              rel="noopener"
-              >GitHub</a
-            >
-            <a href="mailto:webcatch@lachlanm05.com">Email</a>
-          </div>
-        </article>
-        <aside class="card">
-          <div class="kicker">Now</div>
-          <p class="muted">
-            working on a few personal projects. will share soon. maybe.
-          </p>
-          <div class="kicker" style="margin-top: 14px">Stacks I enjoy</div>
-          <ul>
-            <li>Static HTML + CSS</li>
-            <li>Flask for APIs & dashboards</li>
-            <li>Node + Mineflayer for MC agents</li>
-            <sub>(project coming soon i swear)</sub>
-            <li>Apache reverse proxying</li>
-          </ul>
-        </aside>
-      </section>
-
-      <section id="projects" class="grid" aria-label="Projects">
-        <div class="tile" style="grid-column: span 12">
-          <div class="kicker">Featured Projects</div>
-          <div class="projects" style="margin-top: 10px">
-            <article class="project">
-              <div class="meta">
-                <h3>DDMC</h3>
-                <span class="tag">2025</span>
-              </div>
-              <p class="muted">
-                a python based doki doki literature club mod manager with gui.
-                will 2.0 ever be released? idk. maybe.
-              </p>
-              <div class="tags">
-                <span class="tag">Python</span><span class="tag">hell</span
-                ><span class="tag">why did i not make comments</span>
-              </div>
-              <div class="links">
-                <a href="https://lachlanm05.com/ddmc">Live</a>
-                <a href="https://github.com/LachlanM05/ddmc">Source</a>
-              </div>
-            </article>
-            <article class="project">
-              <div class="meta">
-                <h3>Goober</h3>
-                <span class="tag">2025</span>
-              </div>
-              <p class="muted">mii inspired avatar creator.</p>
-              <div class="tags">
-                <span class="tag">JavaScript</span><span class="tag">HTML</span>
-                <span class="tag">CSS</span>
-              </div>
-              <div class="links">
-                <a href="https://goober.lachlanm05.com">Live</a>
-                <a href="https://github.com/LachlanM05/goober">Source</a>
-              </div>
-            </article>
-            <!--            <article class="project">
+    <section id="projects" class="grid" aria-label="Projects">
+      <div class="tile" style="grid-column: span 12">
+        <div class="kicker">Featured Projects</div>
+        <div class="projects" style="margin-top: 10px">
+          <article class="project">
+            <div class="meta">
+              <h3>DDMC</h3>
+              <span class="tag">2025</span>
+            </div>
+            <p class="muted">
+              a python based doki doki literature club mod manager with gui.
+              will 2.0 ever be released? idk. maybe.
+            </p>
+            <div class="tags">
+              <span class="tag">Python</span><span class="tag">hell</span><span class="tag">why did i not make
+                comments</span>
+            </div>
+            <div class="links">
+              <a href="https://lachlanm05.com/ddmc">Live</a>
+              <a href="https://github.com/LachlanM05/ddmc">Source</a>
+            </div>
+          </article>
+          <article class="project">
+            <div class="meta">
+              <h3>Goober</h3>
+              <span class="tag">2025</span>
+            </div>
+            <p class="muted">mii inspired avatar creator.</p>
+            <div class="tags">
+              <span class="tag">JavaScript</span><span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+            </div>
+            <div class="links">
+              <a href="https://goober.lachlanm05.com">Live</a>
+              <a href="https://github.com/LachlanM05/goober">Source</a>
+            </div>
+          </article>
+          <!--            <article class="project">
               <div class="meta">
                 <h3></h3>
                 <span class="tag">2024</span>
@@ -164,58 +223,60 @@
               </div>
               <div class="links"><a href="#">Live</a></div>
             </article>  -->
+        </div>
+      </div>
+    </section>
+
+    <section id="writing" class="grid" aria-label="Writing">
+      <div class="tile" style="grid-column: span 12">
+        <div class="kicker">Writing</div>
+        <div class="cardlist" style="margin-top: 10px">
+          <div class="listitem">
+            <a href="#" class="post">placheholder.</a>
+            <span class="muted">Oct 2025</span>
+          </div>
+          <div class="listitem">
+            <a href="#" class="post">don't blame me.</a>
+            <span class="muted">Oct 2025</span>
+          </div>
+          <div class="listitem">
+            <a href="#" class="post">i just reset my server. cut me some slack, okay~?</a>
+            <span class="muted">Sep 2025</span>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="writing" class="grid" aria-label="Writing">
-        <div class="tile" style="grid-column: span 12">
-          <div class="kicker">Writing</div>
-          <div class="cardlist" style="margin-top: 10px">
-            <div class="listitem">
-              <a href="#" class="post">placheholder.</a>
-              <span class="muted">Oct 2025</span>
-            </div>
-            <div class="listitem">
-              <a href="#" class="post">don't blame me.</a>
-              <span class="muted">Oct 2025</span>
-            </div>
-            <div class="listitem">
-              <a href="#" class="post"
-                >i just reset my server. cut me some slack, okay~?</a
-              >
-              <span class="muted">Sep 2025</span>
-            </div>
-          </div>
-        </div>
-      </section>
+    <section id="event" class="grid hidden" aria-label="Current Event">
+      <div class="tile event-panel" style="grid-column: span 12">
+        <!-- js will actually add content -->
+      </div>
+    </section>
 
-      <section id="event" class="grid hidden" aria-label="Current Event">
-        <div class="tile event-panel" style="grid-column: span 12">
-          <!-- js will actually add content -->
-        </div>
-      </section>
-
-      <section id="contact" class="grid" aria-label="Contact">
-        <div class="tile" style="grid-column: span 12">
-          <div class="kicker">Contact</div>
-          <p>
-            wanna email me? go for it.
-            <a href="mailto:webcatch@lachlanm05.com">webcatch@lachlanm05.com</a
-            >.
-          </p>
-          <pre><code>$ ssh lachlan@minion
+    <section id="contact" class="grid" aria-label="Contact">
+      <div class="tile" style="grid-column: span 12">
+        <div class="kicker">Contact</div>
+        <p>
+          wanna email me? go for it.
+          <a href="mailto:webcatch@lachlanm05.com">webcatch@lachlanm05.com</a>.
+        </p>
+        <pre><code>$ ssh lachlan@minion
 $ rm -rf /srv/
 $ sudo shutdown --now</code></pre>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap">
+        <div class="footer-inner">
+          <p>© 2025 LachlanM05<p id="credit-line" aria-live="polite"></p></p> 
         </div>
-      </section>
+      </div>
+    </footer>
+    <script src="/assets/footer.js" defer></script>
+  </div>
 
-      <footer>
-        © <span id="y">2025</span> Lachlan •
-        <span class="love">i love you.</span>
-      </footer>
-    </div>
+  <script type="module" src="/assets/main.js"></script>
+</body>
 
-    <script type="module" src="/assets/main.js"></script>
-  </body>
 </html>
