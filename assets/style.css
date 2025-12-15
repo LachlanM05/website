@@ -192,8 +192,9 @@ nav a:hover {
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  background: var(--ok);
-  box-shadow: 0 0 12px var(--ok);
+  background: var(--danger);
+  box-shadow: 0 0 12px var(--danger);
+
 }
 
 /* ===============================
