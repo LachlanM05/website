@@ -85,6 +85,6 @@ A generic Mii-inspired avatar creator.
 
 ## License
 
-This project is open for curiosity, but please credit if you use significant portions of the code.
+This project is Open-Source with the [MIT License](https://github.com/LachlanM05/website/blob/main/LICENSE)
 
 © 2025 LachlanM05
