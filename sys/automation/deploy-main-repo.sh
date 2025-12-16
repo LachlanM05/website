@@ -21,7 +21,6 @@ if [ ! -f "$TEMP_ZIP" ]; then
 fi
 
 # extract conf file specifically
-# use a wildcard, as github will probably put it in a folder like [repo].zip/[repo]/[files]   <-- need to fact check
 echo "Peeking for config..."
 bsdtar -x -f "$TEMP_ZIP" -O "*/sys/.conf" > "$TEMP_CONF" 2>/dev/null
 
@@ -32,8 +31,27 @@ if [ -s "$TEMP_CONF" ]; then
     # extract content between quotes for ignore
     IGNORES=$(grep '^IGNORE_FILES=' "$TEMP_CONF" | cut -d'"' -f2)
     
-    # create an exclujde list, newline seperated
+    # create an exclude list, newline seperated
     echo "$IGNORES" | tr ' ' '\n' > "$EXCLUDE_LIST"
+
+    # purging
+    # extract content between quotes for purge
+    PURGES=$(grep '^PURGE_FILES=' "$TEMP_CONF" | cut -d'"' -f2)
+    
+    if [ -n "$PURGES" ]; then
+        echo "Found purge list. Cleaning specified files..."
+        for file in $PURGES; do
+            # construct full path safely
+            target_path="$TARGET_DIR/$file"
+            
+            # check if file exists before deletin
+            if [ -e "$target_path" ]; then
+                echo "  Purging: $file"
+                rm -rf "$target_path"
+            fi
+        done
+    fi
+
 else
     echo "No config found or empty. Proceeding without exclusions."
     > "$EXCLUDE_LIST"
