@@ -577,3 +577,120 @@ body.has-cobwebs::after {
 well, chatgpt, you did well.
 just don't kill me when the ai uprising happens for making you write comments in an off-shoot css file.
 */
+
+
+
+/* here's an update for the blog specific css, comments still handeled by ai. */
+
+/* ===============================
+   Blog Styles
+   =============================== */
+
+.blog-list h1 {
+  margin-bottom: 30px;
+}
+
+.blog-preview {
+  padding: 24px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  transition: transform 0.2s ease;
+}
+
+.blog-preview:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+
+.blog-preview h2 {
+  margin: 8px 0;
+  font-size: 1.5rem;
+}
+
+.blog-preview h2 a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.blog-post {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px 0 60px;
+}
+
+.post-header {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.post-header h1 {
+  font-size: clamp(32px, 5vw, 48px);
+  margin-top: 10px;
+}
+
+.content {
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.content h2 { margin-top: 1.5em; color: var(--accent); }
+.content p { margin-bottom: 1.2em; }
+.content img { max-width: 100%; border-radius: 8px; }
+.content pre { background: #000; padding: 16px; border-radius: 8px; overflow-x: auto; }
+
+/* ===============================
+   Sticky Event Notification
+   =============================== */
+
+.sticky-event {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 400px;
+  z-index: 1000;
+  animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sticky-event .event-panel {
+  background: rgba(17, 19, 26, 0.95); /* Semi-transparent dark */
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--accent);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  padding: 12px 18px;
+  border-radius: 99px; /* Fully rounded pill shape */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* Adjust internal event text for the smaller sticky view */
+.sticky-event .event-panel h3 {
+  font-size: 14px;
+  margin: 0;
+  display: inline-block;
+}
+
+.sticky-event .event-panel .eyebrow {
+  display: none; /* Hide 'Current Event' label for compactness */
+}
+
+.sticky-event .event-panel p {
+  font-size: 12px;
+  margin: 0;
+  display: inline-block;
+  opacity: 0.8;
+}
+
+@keyframes slideUp {
+  from { transform: translate(-50%, 100%); opacity: 0; }
+  to { transform: translate(-50%, 0); opacity: 1; }
+}
+
+/* Ensure hidden still works */
+.hidden { display: none !important; }
+

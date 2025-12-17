@@ -66,6 +66,17 @@ bsdtar -x -f "$TEMP_ZIP" \
     --strip-components=1 \
     --exclude-from "$EXCLUDE_LIST"
 
+# blog build
+echo "Building Blog..."
+if [ -f "$TARGET_DIR/sys/automation/build-blog.py" ]; then
+    chmod +x "$TARGET_DIR/sys/automation/build-blog.py"
+    # execute inside target dir so paths (assets/) align
+    cd "$TARGET_DIR" || exit
+    python3 sys/automation/build-blog.py
+else
+    echo "Warning: Blog build script not found."
+fi
+
 # cleanup (clean sweep fortnite emote)
 rm "$TEMP_ZIP" "$TEMP_CONF" "$EXCLUDE_LIST"
 echo "Deployment Complete."
