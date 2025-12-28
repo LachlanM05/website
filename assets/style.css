@@ -694,3 +694,95 @@ just don't kill me when the ai uprising happens for making you write comments in
 /* Ensure hidden still works */
 .hidden { display: none !important; }
 
+
+/* ===============================
+   AI Detective Tool Styles
+   =============================== */
+
+.upload-zone {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 40px;
+  text-align: center;
+  background: var(--bg-soft);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.upload-zone:hover, 
+.upload-zone.dragover {
+  border-color: var(--accent);
+  background: var(--card);
+}
+
+.upload-zone input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.controls {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background: var(--bg-soft);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.control-group label {
+  font: 600 12px var(--mono);
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+canvas {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--card); /* changed from #000 to match theme */
+}
+
+/* Reference Panels Layout */
+.reference-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.ref-card {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+}
+
+.ref-card img {
+  width: 100%;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.ref-card:hover img {
+  opacity: 1;
+}
+
+.ref-label {
+  font: 600 10px var(--mono);
+  color: var(--muted);
+  text-transform: uppercase;
+}

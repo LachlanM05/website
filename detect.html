@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ai detection</title>
+  <link rel="stylesheet" href="/assets/style.css" />
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <img src="/assets/84118320.png" alt="avatar" />
+        <span>Lachlan</span>
+      </div>
+      <nav aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="#" class="active" style="background:var(--bg-soft)">AI Detective</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="card" style="grid-column: span 2">
+        <h1>AI Artifact Detective.</h1>
+        <p class="muted">
+          Analyze image noise patterns to detect synthetic generation. 
+          Processing happens locally in your browser. No images are uploaded or kept on my server.
+        </p>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="tile">
+        <div class="upload-zone" id="dropArea">
+          <input type="file" id="fileInput" accept="image/*">
+          <h3>Drop image here or click to upload</h3>
+          <p class="muted">You can also CTRL+V to paste an image directly.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid" id="results" style="display:none;">
+      
+      <div class="tile" style="padding: 0; background: transparent; border: none;">
+        <div class="controls">
+          <div class="control-group">
+            <label for="elaQuality">ELA Quality (<span id="elaVal">90</span>%)</label>
+            <input type="range" id="elaQuality" min="50" max="99" value="90">
+          </div>
+          <div class="control-group">
+            <label for="hpRadius">High Pass Radius (<span id="hpVal">3</span>px)</label>
+            <input type="range" id="hpRadius" min="1" max="20" value="3">
+          </div>
+        </div>
+      </div>
+
+      <div class="tile" style="grid-column: span 6;">
+        <div class="kicker">Analysis Method 1</div>
+        <h3>Error Level Analysis (ELA)</h3>
+        <p class="muted" style="font-size: 0.9em; margin-bottom: 15px;">
+          Highlights compression inconsistencies. Real photos usually have uniform noise. 
+          AI often has patches of rainbow blocks or solid black/white areas.
+        </p>
+        
+        <canvas id="elaCanvas"></canvas>
+
+        <div class="reference-grid">
+          <div class="ref-card">
+            <div class="ref-label">Reference: Real Photo</div>
+            <img src="assets/ref_ela_real.jpg" alt="Upload a real reference" onerror="this.style.display='none'">
+            <p class="muted" style="font-size: 10px;">Uniform noise texture</p>
+          </div>
+          <div class="ref-card">
+            <div class="ref-label">Reference: AI Generated</div>
+             <img src="assets/ref_ela_ai.jpg" alt="Upload an AI reference" onerror="this.style.display='none'">
+            <p class="muted" style="font-size: 10px;">Patchy / Blocky artifacts</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tile" style="grid-column: span 6;">
+        <div class="kicker">Analysis Method 2</div>
+        <h3>High Pass Filter</h3>
+        <p class="muted" style="font-size: 0.9em; margin-bottom: 15px;">
+          Isolates edges and fine details. Look for a perfect mechanical grid 
+          overlaying the noise (checkerboard pattern), common in GANs/Upscalers.
+        </p>
+        
+        <canvas id="hpCanvas"></canvas>
+
+
+        <div class="reference-grid">
+          <div class="ref-card">
+            <p class="muted" style="font-size: 10px;">looking for good example images. for now pretend there is a really cool one here.</p>>
+          </div>
+
+         <!-- <div class="reference-grid">
+          <div class="ref-card">
+            <div class="ref-label">Reference: Real Photo</div>
+             <img src="assets/ref_hp_real.jpg" alt="Upload a real reference" onerror="this.style.display='none'">
+            <p class="muted" style="font-size: 10px;">Random organic grain</p>
+          </div>
+          <div class="ref-card">
+            <div class="ref-label">Reference: AI Generated</div>
+             <img src="assets/ref_hp_ai.jpg" alt="Upload an AI reference" onerror="this.style.display='none'">
+            <p class="muted" style="font-size: 10px;">Grid / Checkerboard</p>
+          </div>
+        </div> -->
+      </div>
+
+    </section>
+
+    <footer>
+      <div class="wrap">
+        <p>© 2025 LachlanM05</p>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // conf
+    const ELA_SCALE = 20; // Brightness multiplier for ELA
+
+    // dom elements
+    const dropArea = document.getElementById('dropArea');
+    const fileInput = document.getElementById('fileInput');
+    const resultsSection = document.getElementById('results');
+    const elaCanvas = document.getElementById('elaCanvas');
+    const hpCanvas = document.getElementById('hpCanvas');
+    
+    // controls
+    const elaRange = document.getElementById('elaQuality');
+    const hpRange = document.getElementById('hpRadius');
+    const elaValDisplay = document.getElementById('elaVal');
+    const hpValDisplay = document.getElementById('hpVal');
+
+    let currentImg = null;
+
+    // event listenrs
+    
+    // drag 'n drop
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+      dropArea.addEventListener(eventName, preventDefaults, false);
+    });
+
+    function preventDefaults(e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    dropArea.addEventListener('drop', handleDrop, false);
+    fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
+    
+    // paste suppotr
+    window.addEventListener('paste', (e) => {
+      const items = (e.clipboardData || e.originalEvent.clipboardData).items;
+      for (let index in items) {
+        const item = items[index];
+        if (item.kind === 'file' && item.type.includes('image/')) {
+          const blob = item.getAsFile();
+          handleFiles([blob]);
+        }
+      }
+    });
+
+    // control updates
+    elaRange.addEventListener('input', (e) => {
+      elaValDisplay.textContent = e.target.value;
+      if(currentImg) processELA(currentImg);
+    });
+
+    hpRange.addEventListener('input', (e) => {
+      hpValDisplay.textContent = e.target.value;
+      if(currentImg) processHP(currentImg);
+    });
+
+    // core logic
+
+    function handleDrop(e) {
+      const dt = e.dataTransfer;
+      const files = dt.files;
+      handleFiles(files);
+    }
+
+    function handleFiles(files) {
+      if(files.length === 0) return;
+      const file = files[0];
+      
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = new Image();
+        img.onload = function() {
+          currentImg = img;
+          resultsSection.style.display = "grid";
+          
+          // Trigger processing
+          processELA(img);
+          processHP(img);
+        }
+        img.src = e.target.result;
+      }
+      reader.readAsDataURL(file);
+    }
+
+    // proc 1: ela (error level analysis)
+    function processELA(img) {
+      const w = img.width;
+      const h = img.height;
+      elaCanvas.width = w;
+      elaCanvas.height = h;
+      const ctx = elaCanvas.getContext('2d');
+
+      // draw og to get data
+      const bufferCanvas = document.createElement('canvas');
+      bufferCanvas.width = w;
+      bufferCanvas.height = h;
+      const bufferCtx = bufferCanvas.getContext('2d');
+      bufferCtx.drawImage(img, 0, 0);
+      
+      // compress via datetourl
+      const quality = parseInt(elaRange.value) / 100;
+      const compressedDataUrl = bufferCanvas.toDataURL('image/jpeg', quality);
+      
+      const compressedImg = new Image();
+      compressedImg.onload = function() {
+        // draw comp
+        const compCanvas = document.createElement('canvas');
+        compCanvas.width = w;
+        compCanvas.height = h;
+        const compCtx = compCanvas.getContext('2d');
+        compCtx.drawImage(compressedImg, 0, 0);
+
+        // compare
+        const originalData = bufferCtx.getImageData(0, 0, w, h);
+        const compressedData = compCtx.getImageData(0, 0, w, h);
+        const output = ctx.createImageData(w, h);
+
+        for (let i = 0; i < originalData.data.length; i += 4) {
+          // Calculate difference per channel
+          let rDiff = Math.abs(originalData.data[i] - compressedData.data[i]);
+          let gDiff = Math.abs(originalData.data[i+1] - compressedData.data[i+1]);
+          let bDiff = Math.abs(originalData.data[i+2] - compressedData.data[i+2]);
+
+          // amplify
+          output.data[i] = rDiff * ELA_SCALE;     // R
+          output.data[i+1] = gDiff * ELA_SCALE;   // G
+          output.data[i+2] = bDiff * ELA_SCALE;   // B
+          output.data[i+3] = 255;                 // Alpha
+        }
+        ctx.putImageData(output, 0, 0);
+      };
+      compressedImg.src = compressedDataUrl;
+    }
+
+    // proc 2: high pass filter
+    function processHP(img) {
+      const w = img.width;
+      const h = img.height;
+      hpCanvas.width = w;
+      hpCanvas.height = h;
+      const ctx = hpCanvas.getContext('2d');
+
+      // draw og
+      ctx.drawImage(img, 0, 0);
+      const originalData = ctx.getImageData(0, 0, w, h);
+
+      // create blurr
+      const blurCanvas = document.createElement('canvas');
+      blurCanvas.width = w;
+      blurCanvas.height = h;
+      const blurCtx = blurCanvas.getContext('2d');
+      
+      const radius = hpRange.value;
+      blurCtx.filter = `grayscale(100%) blur(${radius}px)`;
+      blurCtx.drawImage(img, 0, 0);
+      const blurData = blurCtx.getImageData(0, 0, w, h);
+
+      // need og in grayscale to match up
+      const grayCanvas = document.createElement('canvas');
+      grayCanvas.width = w;
+      grayCanvas.height = h;
+      const grayCtx = grayCanvas.getContext('2d');
+      grayCtx.filter = 'grayscale(100%)';
+      grayCtx.drawImage(img, 0, 0);
+      const grayData = grayCtx.getImageData(0, 0, w, h);
+
+      // high pass math
+      const output = ctx.createImageData(w, h);
+      
+      for (let i = 0; i < originalData.data.length; i += 4) {
+        const grayVal = grayData.data[i]; // R channel of grayscale is intensity
+        const blurVal = blurData.data[i];
+        
+        let val = (grayVal - blurVal) + 128;
+        
+        // clamp
+        if (val < 0) val = 0;
+        if (val > 255) val = 255;
+
+        output.data[i] = val;     // R
+        output.data[i+1] = val;   // G
+        output.data[i+2] = val;   // B
+        output.data[i+3] = 255;   // Alpha
+      }
+      
+      ctx.putImageData(output, 0, 0);
+    }
+
+  </script>
+</body>
+</html>
