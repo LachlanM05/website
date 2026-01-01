@@ -218,6 +218,7 @@ function startCobwebs() {
 // but hey, it's the thought that counts, right?
 // also this effect looks horrible. so:
 // TODO: improve fireworks to not suck.
+/*
 function startFireworks() {
   if (prefersReducedMotion()) return () => {};
   const root = document.getElementById(FX_ROOT_ID);
@@ -254,6 +255,7 @@ function startFireworks() {
       });
     }
   }
+
 
   function tick() {
     raf = requestAnimationFrame(tick);
@@ -299,7 +301,7 @@ function startFireworks() {
     canvas.remove();
   };
 }
-
+*/
 // effect routing
 function chooseEffect(dateObj) {
   // order matters for single-day events taking priority
